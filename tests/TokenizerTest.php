@@ -21,5 +21,3 @@ it('removes the tokens by given removal rule', function () {
     $tokenizer->addRemovalRule('/x/', 'q');
     expect($tokenizer->tokenize('sample text'))->toBe(['saple', 'teqt']);
 });
-
-// multiple

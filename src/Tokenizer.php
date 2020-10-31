@@ -9,8 +9,10 @@ namespace Phonyland\NGram;
  */
 final class Tokenizer
 {
-    private array $removalRules = [];
-    private array $replaceRules = [];
+    /**
+     * @phpstan-var array<\Phonyland\NGram\TokenizerFilter>
+     */
+    private array $filters      = [];
     private string $separator   = '';
 
     public const WHITESPACE_SEPARATOR = '/\s/';
@@ -21,10 +23,11 @@ final class Tokenizer
      * @param  string  $text
      *
      * @return array
+     * @phpstan-return array<string>
      */
     public function tokenize(string $text): array
     {
-        $text = preg_replace($this->removalRules, $this->replaceRules, $text);
+        $text = preg_replace($this->getFilterPatterns(), $this->getFilterReplacements(), $text);
 
         return preg_split($this->separator, $text, -1, PREG_SPLIT_NO_EMPTY);
     }
@@ -39,8 +42,7 @@ final class Tokenizer
      */
     public function addRemovalRule(string $searchRegex, string $replaceString = ''): self
     {
-        $this->removalRules[] = $searchRegex;
-        $this->replaceRules[] = $replaceString;
+        $this->filters[] = new TokenizerFilter($searchRegex, $replaceString);
 
         return $this;
     }
@@ -57,5 +59,31 @@ final class Tokenizer
         $this->separator = $seperator;
 
         return $this;
+    }
+
+    /**
+     * Get applied filter patterns.
+     *
+     * @return array
+     * @phpstan-return array<string>
+     */
+    private function getFilterPatterns(): array
+    {
+        return array_map(function (TokenizerFilter $filter): string {
+            return $filter->pattern;
+        }, $this->filters);
+    }
+
+    /**
+     * Get applied filter replacements.
+     *
+     * @return array
+     * @phpstan-return array<string>
+     */
+    private function getFilterReplacements(): array
+    {
+        return array_map(function (TokenizerFilter $filter): string {
+            return $filter->replacement;
+        }, $this->filters);
     }
 }
