@@ -25,6 +25,11 @@
     "require-dev": {
         "phonyland/dev-tools": "dev-master"
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Phonyland\\NGram\\Tests\\": "tests"
+        }
+    },
     "scripts": {
         "lint": "rector process src && php-cs-fixer fix -v",
         "test:lint": "php-cs-fixer fix -v --dry-run && rector process src --dry-run",
