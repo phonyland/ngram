@@ -12,6 +12,8 @@ final class TokenizerFilter
     public string $pattern;
     public string $replacement;
 
+    public const NONE = '/\s+/';
+
     public function __construct(string $pattern, string $replacement)
     {
         $this->pattern     = $pattern;
