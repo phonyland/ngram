@@ -13,6 +13,8 @@ final class Tokenizer
     private array $replaceRules = [];
     private string $separator   = '';
 
+    public const WHITESPACE_SEPARATOR = '/\s/';
+
     /**
      * Applies the removal rules and returns tokenized array.
      *
