@@ -1,0 +1,39 @@
+{
+    "name": "phonyland/ngram",
+    "description": "A PHP library for working with n-grams",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yunus Emre Deligöz",
+            "email": "ye@deligoz.me"
+        }
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.4 || ^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Phonyland\\NGram\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phonyland/dev-tools": "dev-master"
+    },
+    "scripts": {
+        "lint": "rector process src && php-cs-fixer fix -v",
+        "test:lint": "php-cs-fixer fix -v --dry-run && rector process src --dry-run",
+        "test:types": "phpstan analyse --ansi",
+        "test:unit": "pest --colors=always",
+        "test": [
+            "@test:lint",
+            "@test:types",
+            "@test:unit"
+        ]
+    }
+}
