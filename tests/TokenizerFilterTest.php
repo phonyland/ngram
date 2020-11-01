@@ -46,7 +46,7 @@ test('TokenizerFilter::FRENCH', function () {
 
     $text = 'éèëêúüûùœàáäâæíïìîóöôòç#';
 
-    $expected = "éèëêúüûùœàáäâæíïìîóöôòç";
+    $expected = 'éèëêúüûùœàáäâæíïìîóöôòç';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
 });
@@ -58,7 +58,7 @@ test('TokenizerFilter::ENGLISH', function () {
 
     $text = 'a-zæœ#';
 
-    $expected = "azæœ";
+    $expected = 'azæœ';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
 });
@@ -70,7 +70,7 @@ test('TokenizerFilter::OLD_ENGLISH', function () {
 
     $text = 'a-zþðƿȝæœ#';
 
-    $expected = "azþðƿȝæœ";
+    $expected = 'azþðƿȝæœ';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
 });
@@ -82,7 +82,7 @@ test('TokenizerFilter::ALPHABETICAL', function () {
 
     $text = 'a-z#';
 
-    $expected = "az";
+    $expected = 'az';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
 });
@@ -94,7 +94,7 @@ test('TokenizerFilter::NUMERICAL', function () {
 
     $text = 'a-z#123';
 
-    $expected = "123";
+    $expected = '123';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
 });
@@ -106,7 +106,7 @@ test('TokenizerFilter::ALPHANUMBERICAL', function () {
 
     $text = 'a-z#123';
 
-    $expected = "az123";
+    $expected = 'az123';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
 });
@@ -118,7 +118,7 @@ test('TokenizerFilter::LATIN_EXTENDED_ALPHABETICAL', function () {
 
     $text = 'a-zéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß#';
 
-    $expected = "azéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß";
+    $expected = 'azéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
 });
@@ -130,7 +130,7 @@ test('TokenizerFilter::LATIN_EXTENDED_ALPHANUMERICAL', function () {
 
     $text = '0-93a-zéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß#';
 
-    $expected = "093azéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß";
+    $expected = '093azéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
 });

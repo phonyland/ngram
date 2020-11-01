@@ -10,7 +10,7 @@ namespace Phonyland\NGram;
 final class Tokenizer
 {
     /**
-     * @phpstan-var array<\Phonyland\NGram\TokenizerFilter>
+     * @phpstan-var array<TokenizerFilter>
      */
     private array $filters      = [];
     private string $separator   = '';
@@ -20,9 +20,6 @@ final class Tokenizer
     /**
      * Applies the removal rules and returns tokenized array.
      *
-     * @param  string  $text
-     *
-     * @return array
      * @phpstan-return array<string>
      */
     public function tokenize(string $text): array
@@ -31,14 +28,11 @@ final class Tokenizer
 
         $tokens = preg_replace($this->getFilterPatterns(), $this->getFilterReplacements(), $tokens);
 
-        return array_filter($tokens, fn($value) => !is_null($value) && $value !== '');
+        return array_filter($tokens, fn ($value) => !is_null($value) && $value !== '');
     }
 
     /**
      * Adds a new removal rule.
-     *
-     * @param  string  $searchRegex
-     * @param  string  $replaceString
      *
      * @return $this
      */
@@ -52,8 +46,6 @@ final class Tokenizer
     /**
      * Sets the separator for the splitting the given text.
      *
-     * @param  string  $seperator
-     *
      * @return $this
      */
     public function setSeparator(string $seperator): self
@@ -66,7 +58,6 @@ final class Tokenizer
     /**
      * Get applied filter patterns.
      *
-     * @return array
      * @phpstan-return array<string>
      */
     private function getFilterPatterns(): array
@@ -79,7 +70,6 @@ final class Tokenizer
     /**
      * Get applied filter replacements.
      *
-     * @return array
      * @phpstan-return array<string>
      */
     private function getFilterReplacements(): array
