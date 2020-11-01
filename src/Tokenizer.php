@@ -27,9 +27,11 @@ final class Tokenizer
      */
     public function tokenize(string $text): array
     {
-        $text = preg_replace($this->getFilterPatterns(), $this->getFilterReplacements(), $text);
+        $tokens = preg_split($this->separator, $text, -1, PREG_SPLIT_NO_EMPTY);
 
-        return preg_split($this->separator, $text, -1, PREG_SPLIT_NO_EMPTY);
+        $tokens = preg_replace($this->getFilterPatterns(), $this->getFilterReplacements(), $tokens);
+
+        return array_filter($tokens, fn($value) => !is_null($value) && $value !== '');
     }
 
     /**
