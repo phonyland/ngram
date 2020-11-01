@@ -41,6 +41,8 @@ $tokenizer->tokenize($text);
 // ['saple', 'text']
 ```
 
+---
+
 > If you want to start generating realistic fake data with Phony, visit the main **[Phony Repository](https://github.com/phonyland/phony)**.
 
 - Explore the docs: **[phony.land »](https://phony.land/)**

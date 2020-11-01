@@ -1,6 +1,6 @@
 {
     "name": "phonyland/ngram",
-    "description": "A PHP library for working with n-grams",
+    "description": "N-Gram Tools for \uD83D\uDE43 Phony Language with sanitizing, tokenization, n-gram extraction, frequency mapping, and word generation.",
     "type": "library",
     "license": "MIT",
     "authors": [
