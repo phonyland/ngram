@@ -24,11 +24,13 @@ final class Tokenizer
      */
     public function tokenize(string $text): array
     {
+        /** @phpstan-var  array<string> $tokens */
         $tokens = preg_split($this->separator, $text, -1, PREG_SPLIT_NO_EMPTY);
 
+        /** @phpstan-var  array<string> $tokens */
         $tokens = preg_replace($this->getFilterPatterns(), $this->getFilterReplacements(), $tokens);
 
-        return array_filter($tokens, fn ($value) => !is_null($value) && $value !== '');
+        return array_filter($tokens, fn ($token) => !is_null($token) && $token !== '');
     }
 
     /**
