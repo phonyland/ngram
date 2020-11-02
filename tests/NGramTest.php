@@ -80,3 +80,77 @@ test('multigram', function (): void {
 
     expect($unigrams)->toBe($expected);
 });
+
+test('unigram frequency', function (): void {
+    $tokenizer = new Tokenizer();
+    $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
+    $tokens = $tokenizer->tokenize('sample text');
+
+    $unigrams = NGram::unigramFrequency($tokens);
+    $expected = [
+        's' => 1,
+        'a' => 1,
+        'm' => 1,
+        'p' => 1,
+        'l' => 1,
+        'e' => 2,
+        't' => 2,
+        'x' => 1,
+    ];
+
+    expect($unigrams)->toBe($expected);
+});
+
+test('bigram frequency', function (): void {
+    $tokenizer = new Tokenizer();
+    $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
+    $tokens = $tokenizer->tokenize('sample text');
+
+    $unigrams = NGram::bigramFrequency($tokens);
+    $expected = [
+        'sa' => 1,
+        'am' => 1,
+        'mp' => 1,
+        'pl' => 1,
+        'le' => 1,
+        'te' => 1,
+        'ex' => 1,
+        'xt' => 1,
+    ];
+
+    expect($unigrams)->toBe($expected);
+});
+
+test('trigram frequency', function (): void {
+    $tokenizer = new Tokenizer();
+    $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
+    $tokens = $tokenizer->tokenize('sample text');
+
+    $unigrams = NGram::trigramFrequency($tokens);
+    $expected = [
+        'sam' => 1,
+        'amp' => 1,
+        'mpl' => 1,
+        'ple' => 1,
+        'tex' => 1,
+        'ext' => 1,
+    ];
+
+    expect($unigrams)->toBe($expected);
+});
+
+test('multigram frequency', function (): void {
+    $tokenizer = new Tokenizer();
+    $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
+    $tokens = $tokenizer->tokenize('sample text');
+
+    $unigrams = NGram::multigramFrequency(4, $tokens);
+    $expected = [
+        'samp' => 1,
+        'ampl' => 1,
+        'mple' => 1,
+        'text' => 1,
+    ];
+
+    expect($unigrams)->toBe($expected);
+});
