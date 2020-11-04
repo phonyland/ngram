@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Phonyland\NGram;
 
-/**
- * @internal
- */
 final class NGram
 {
     /**
@@ -16,8 +13,9 @@ final class NGram
      *
      * @phpstan-return array<string>
      */
-    public static function multigram(int $n, array $tokens): array
+    public static function multigram(int $n, array $tokens, bool $unique = false): array
     {
+        /** @phpstan-var array<string> $nGrams */
         $nGrams = [];
 
         foreach ($tokens as $token) {
@@ -28,7 +26,7 @@ final class NGram
             }
         }
 
-        return $nGrams;
+        return $unique === true ? array_values(array_unique($nGrams)) : $nGrams;
     }
 
     /**
@@ -38,9 +36,9 @@ final class NGram
      *
      * @phpstan-return array<string>
      */
-    public static function unigram(array $tokens): array
+    public static function unigram(array $tokens, bool $unique = false): array
     {
-        return self::multigram(1, $tokens);
+        return self::multigram(1, $tokens, $unique);
     }
 
     /**
@@ -50,9 +48,9 @@ final class NGram
      *
      * @phpstan-return array<string>
      */
-    public static function bigram(array $tokens): array
+    public static function bigram(array $tokens, bool $unique = false): array
     {
-        return self::multigram(2, $tokens);
+        return self::multigram(2, $tokens, $unique);
     }
 
     /**
@@ -62,9 +60,9 @@ final class NGram
      *
      * @phpstan-return array<string>
      */
-    public static function trigram(array $tokens): array
+    public static function trigram(array $tokens, bool $unique = false): array
     {
-        return self::multigram(3, $tokens);
+        return self::multigram(3, $tokens, $unique);
     }
 
     /**

@@ -27,6 +27,26 @@ test('unigram', function (): void {
     expect($unigrams)->toBe($expected);
 });
 
+test('unigram unique', function (): void {
+    $tokenizer = new Tokenizer();
+    $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
+    $tokens = $tokenizer->tokenize('sample text');
+
+    $unigrams = NGram::unigram($tokens, true);
+    $expected = [
+        's',
+        'a',
+        'm',
+        'p',
+        'l',
+        'e',
+        't',
+        'x',
+    ];
+
+    expect($unigrams)->toBe($expected);
+});
+
 test('bigram', function (): void {
     $tokenizer = new Tokenizer();
     $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
