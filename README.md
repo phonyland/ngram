@@ -14,7 +14,7 @@ This repository contains the N-Gram Tools for 🙃 Phony Language.
 
 ## 🚀 Installation
 
-Requires `PHP` `>= 7.4` or `>= 8.0`.
+Requires PHP `>= 7.4` or `>= 8.0`.
 
 You can install the package via composer:
 
@@ -22,7 +22,7 @@ You can install the package via composer:
 composer require phonyland/ngram
 ```
 
-## 🙌 Usage
+## ⌨️ Usage
 
 ### Tokenizer
 
@@ -39,6 +39,86 @@ $text = 'sample# text%';
 
 $tokenizer->tokenize($text);
 // ['saple', 'text']
+```
+
+### N-Gram
+
+#### Simple N-Gram Generation
+
+```php
+use Phonyland\NGram\Tokenizer;
+
+$tokenizer = new Tokenizer();
+$tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
+$tokens = $tokenizer->tokenize('sample text');
+
+NGram::trigram($tokens);
+['sam', 'amp', 'mpl', 'ple', 'tex', 'ext'];
+
+NGram::bigram($tokens);
+['sa', 'am', 'mp', 'pl', 'le', 'te', 'ex', 'xt'];
+
+NGram::unigram($tokens);
+['s', 'a', 'm', 'p', 'l', 'e', 't', 'e', 'x', 't'];
+
+NGram::multigram(4, $tokens);
+['samp', 'ampl', 'mple', 'text'];
+
+// Generate Unique N-Grams 
+NGram::unigram($tokens, true);
+['s', 'a', 'm', 'p', 'l', 'e', 't', 'x'];
+```
+
+#### N-Gram Generation with Frequency
+
+```php
+use Phonyland\NGram\Tokenizer;
+
+$tokenizer = new Tokenizer();
+$tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
+$tokens = $tokenizer->tokenize('sample text');
+
+NGram::trigramFrequency($tokens);
+[
+    'sam' => 1,
+    'amp' => 1,
+    'mpl' => 1,
+    'ple' => 1,
+    'tex' => 1,
+    'ext' => 1,
+];
+
+NGram::bigramFrequency($tokens);
+[
+    'sa' => 1,
+    'am' => 1,
+    'mp' => 1,
+    'pl' => 1,
+    'le' => 1,
+    'te' => 1,
+    'ex' => 1,
+    'xt' => 1,
+];
+
+NGram::unigramFrequency($tokens);
+[
+    's' => 1,
+    'a' => 1,
+    'm' => 1,
+    'p' => 1,
+    'l' => 1,
+    'e' => 2,
+    't' => 2,
+    'x' => 1,
+];
+
+NGram::multigramFrequency(4, $tokens);
+[
+    'samp' => 1,
+    'ampl' => 1,
+    'mple' => 1,
+    'text' => 1,
+];
 ```
 
 ---
