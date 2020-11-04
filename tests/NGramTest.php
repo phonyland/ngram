@@ -101,7 +101,7 @@ test('multigram', function (): void {
     expect($unigrams)->toBe($expected);
 });
 
-test('unigram frequency', function (): void {
+test('unigram count', function (): void {
     $tokenizer = new Tokenizer();
     $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
     $tokens = $tokenizer->tokenize('sample text');
@@ -121,7 +121,7 @@ test('unigram frequency', function (): void {
     expect($unigrams)->toBe($expected);
 });
 
-test('bigram frequency', function (): void {
+test('bigram count', function (): void {
     $tokenizer = new Tokenizer();
     $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
     $tokens = $tokenizer->tokenize('sample text');
@@ -141,7 +141,7 @@ test('bigram frequency', function (): void {
     expect($unigrams)->toBe($expected);
 });
 
-test('trigram frequency', function (): void {
+test('trigram count', function (): void {
     $tokenizer = new Tokenizer();
     $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
     $tokens = $tokenizer->tokenize('sample text');
@@ -159,7 +159,7 @@ test('trigram frequency', function (): void {
     expect($unigrams)->toBe($expected);
 });
 
-test('multigram frequency', function (): void {
+test('multigram count', function (): void {
     $tokenizer = new Tokenizer();
     $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
     $tokens = $tokenizer->tokenize('sample text');
