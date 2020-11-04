@@ -106,7 +106,7 @@ test('unigram frequency', function (): void {
     $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
     $tokens = $tokenizer->tokenize('sample text');
 
-    $unigrams = NGram::unigramFrequency($tokens);
+    $unigrams = NGram::unigramCount($tokens);
     $expected = [
         's' => 1,
         'a' => 1,
@@ -126,7 +126,7 @@ test('bigram frequency', function (): void {
     $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
     $tokens = $tokenizer->tokenize('sample text');
 
-    $unigrams = NGram::bigramFrequency($tokens);
+    $unigrams = NGram::bigramCount($tokens);
     $expected = [
         'sa' => 1,
         'am' => 1,
@@ -146,7 +146,7 @@ test('trigram frequency', function (): void {
     $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
     $tokens = $tokenizer->tokenize('sample text');
 
-    $unigrams = NGram::trigramFrequency($tokens);
+    $unigrams = NGram::trigramCount($tokens);
     $expected = [
         'sam' => 1,
         'amp' => 1,
@@ -164,7 +164,7 @@ test('multigram frequency', function (): void {
     $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
     $tokens = $tokenizer->tokenize('sample text');
 
-    $unigrams = NGram::multigramFrequency(4, $tokens);
+    $unigrams = NGram::multigramCount(4, $tokens);
     $expected = [
         'samp' => 1,
         'ampl' => 1,

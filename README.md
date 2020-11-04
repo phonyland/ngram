@@ -69,7 +69,7 @@ NGram::unigram($tokens, true);
 ['s', 'a', 'm', 'p', 'l', 'e', 't', 'x'];
 ```
 
-#### N-Gram Generation with Frequency
+#### N-Gram Generation with Count
 
 ```php
 use Phonyland\NGram\Tokenizer;
@@ -78,7 +78,7 @@ $tokenizer = new Tokenizer();
 $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
 $tokens = $tokenizer->tokenize('sample text');
 
-NGram::trigramFrequency($tokens);
+NGram::trigramCount($tokens);
 [
     'sam' => 1,
     'amp' => 1,
@@ -88,7 +88,7 @@ NGram::trigramFrequency($tokens);
     'ext' => 1,
 ];
 
-NGram::bigramFrequency($tokens);
+NGram::bigramCount($tokens);
 [
     'sa' => 1,
     'am' => 1,
@@ -100,7 +100,7 @@ NGram::bigramFrequency($tokens);
     'xt' => 1,
 ];
 
-NGram::unigramFrequency($tokens);
+NGram::unigramCount($tokens);
 [
     's' => 1,
     'a' => 1,
@@ -112,7 +112,7 @@ NGram::unigramFrequency($tokens);
     'x' => 1,
 ];
 
-NGram::multigramFrequency(4, $tokens);
+NGram::multigramCount(4, $tokens);
 [
     'samp' => 1,
     'ampl' => 1,

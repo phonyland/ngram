@@ -66,13 +66,13 @@ final class NGram
     }
 
     /**
-     * Generates n-grams with frequency for given array of tokens and n-gram level.
+     * Generates n-grams with count for given array of tokens and n-gram level.
      *
      * @phpstan-param  array<string> $tokens
      *
      * @phpstan-return array<string, int>
      */
-    public static function multigramFrequency(int $n, array $tokens): array
+    public static function multigramCount(int $n, array $tokens): array
     {
         /** @phpstan-var array<string, int> $nGrams */
         $nGrams = [];
@@ -95,38 +95,38 @@ final class NGram
     }
 
     /**
-     * Generates unigrams with frequency for given array of tokens.
+     * Generates unigrams with count for given array of tokens.
      *
      * @phpstan-param  array<string> $tokens
      *
      * @phpstan-return array<string, int>
      */
-    public static function unigramFrequency(array $tokens): array
+    public static function unigramCount(array $tokens): array
     {
-        return self::multigramFrequency(1, $tokens);
+        return self::multigramCount(1, $tokens);
     }
 
     /**
-     * Generates bigrams with frequency for given array of tokens.
+     * Generates bigrams with count for given array of tokens.
      *
      * @phpstan-param  array<string> $tokens
      *
      * @phpstan-return array<string, int>
      */
-    public static function bigramFrequency(array $tokens): array
+    public static function bigramCount(array $tokens): array
     {
-        return self::multigramFrequency(2, $tokens);
+        return self::multigramCount(2, $tokens);
     }
 
     /**
-     * Generates trigrams with frequency for given array of tokens.
+     * Generates trigrams with count for given array of tokens.
      *
      * @phpstan-param  array<string> $tokens
      *
      * @phpstan-return array<string, int>
      */
-    public static function trigramFrequency(array $tokens): array
+    public static function trigramCount(array $tokens): array
     {
-        return self::multigramFrequency(3, $tokens);
+        return self::multigramCount(3, $tokens);
     }
 }

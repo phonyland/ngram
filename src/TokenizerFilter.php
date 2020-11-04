@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Phonyland\NGram;
 
-/**
- * @internal
- */
 final class TokenizerFilter
 {
     public string $pattern;
