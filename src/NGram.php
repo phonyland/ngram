@@ -26,7 +26,7 @@ final class NGram
             }
         }
 
-        return $unique === true ? array_values(array_unique($nGrams)) : $nGrams;
+        return $unique ? array_values(array_unique($nGrams)) : $nGrams;
     }
 
     /**
@@ -84,7 +84,7 @@ final class NGram
                 $ngram = mb_substr($token, $i, $n);
 
                 if (array_key_exists($ngram, $nGrams)) {
-                    ++$nGrams[$ngram];
+                    $nGrams[$ngram]++;
                 } else {
                     $nGrams[$ngram] = 1;
                 }
