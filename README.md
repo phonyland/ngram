@@ -52,21 +52,21 @@ $tokenizer = new Tokenizer();
 $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
 $tokens = $tokenizer->tokenize('sample text');
 
-NGram::trigram($tokens);
-['sam', 'amp', 'mpl', 'ple', 'tex', 'ext'];
+NGram::unigram($tokens);
+// ['s', 'a', 'm', 'p', 'l', 'e', 't', 'e', 'x', 't'];
 
 NGram::bigram($tokens);
-['sa', 'am', 'mp', 'pl', 'le', 'te', 'ex', 'xt'];
+// ['sa', 'am', 'mp', 'pl', 'le', 'te', 'ex', 'xt'];
 
-NGram::unigram($tokens);
-['s', 'a', 'm', 'p', 'l', 'e', 't', 'e', 'x', 't'];
+NGram::trigram($tokens);
+// ['sam', 'amp', 'mpl', 'ple', 'tex', 'ext'];
 
 NGram::multigram(4, $tokens);
-['samp', 'ampl', 'mple', 'text'];
+// ['samp', 'ampl', 'mple', 'text'];
 
 // Generate Unique N-Grams 
 NGram::unigram($tokens, true);
-['s', 'a', 'm', 'p', 'l', 'e', 't', 'x'];
+// ['s', 'a', 'm', 'p', 'l', 'e', 't', 'x'];
 ```
 
 #### N-Gram Generation with Count
@@ -78,47 +78,47 @@ $tokenizer = new Tokenizer();
 $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
 $tokens = $tokenizer->tokenize('sample text');
 
-NGram::trigramCount($tokens);
-[
-    'sam' => 1,
-    'amp' => 1,
-    'mpl' => 1,
-    'ple' => 1,
-    'tex' => 1,
-    'ext' => 1,
-];
+NGram::unigramCount($tokens);
+// [
+//     's' => 1,
+//     'a' => 1,
+//     'm' => 1,
+//     'p' => 1,
+//     'l' => 1,
+//     'e' => 2,
+//     't' => 2,
+//     'x' => 1,
+// ];
 
 NGram::bigramCount($tokens);
-[
-    'sa' => 1,
-    'am' => 1,
-    'mp' => 1,
-    'pl' => 1,
-    'le' => 1,
-    'te' => 1,
-    'ex' => 1,
-    'xt' => 1,
-];
+//  [
+//      'sa' => 1,
+//      'am' => 1,
+//      'mp' => 1,
+//      'pl' => 1,
+//      'le' => 1,
+//      'te' => 1,
+//      'ex' => 1,
+//      'xt' => 1,
+//  ];
 
-NGram::unigramCount($tokens);
-[
-    's' => 1,
-    'a' => 1,
-    'm' => 1,
-    'p' => 1,
-    'l' => 1,
-    'e' => 2,
-    't' => 2,
-    'x' => 1,
-];
+NGram::trigramCount($tokens);
+//  [
+//      'sam' => 1,
+//      'amp' => 1,
+//      'mpl' => 1,
+//      'ple' => 1,
+//      'tex' => 1,
+//      'ext' => 1,
+//  ];
 
 NGram::multigramCount(4, $tokens);
-[
-    'samp' => 1,
-    'ampl' => 1,
-    'mple' => 1,
-    'text' => 1,
-];
+// [
+//     'samp' => 1,
+//     'ampl' => 1,
+//     'mple' => 1,
+//     'text' => 1,
+// ];
 ```
 
 ---
