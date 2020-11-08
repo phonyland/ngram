@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\NGramSequence;
+use Phonyland\NGram\Tokenizer;
 
 test('N-Gram Sequence: unigram', function (): void {
     $tokenizer = new Tokenizer();
