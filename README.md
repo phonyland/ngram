@@ -43,42 +43,44 @@ $tokenizer->tokenize($text);
 
 ### N-Gram
 
-#### Simple N-Gram Generation
+#### N-Gram Sequence
 
 ```php
 use Phonyland\NGram\Tokenizer;
+use Phonyland\NGram\NGramSequence;
 
 $tokenizer = new Tokenizer();
 $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
 $tokens = $tokenizer->tokenize('sample text');
 
-NGram::unigram($tokens);
+NGramSequence::unigram($tokens);
 // ['s', 'a', 'm', 'p', 'l', 'e', 't', 'e', 'x', 't'];
 
-NGram::bigram($tokens);
+NGramSequence::bigram($tokens);
 // ['sa', 'am', 'mp', 'pl', 'le', 'te', 'ex', 'xt'];
 
-NGram::trigram($tokens);
+NGramSequence::trigram($tokens);
 // ['sam', 'amp', 'mpl', 'ple', 'tex', 'ext'];
 
-NGram::multigram(4, $tokens);
+NGramSequence::multigram(4, $tokens);
 // ['samp', 'ampl', 'mple', 'text'];
 
 // Generate Unique N-Grams 
-NGram::unigram($tokens, true);
+NGramSequence::unigram($tokens, true);
 // ['s', 'a', 'm', 'p', 'l', 'e', 't', 'x'];
 ```
 
-#### N-Gram Generation with Count
+#### N-Gram Sequences with Count
 
 ```php
 use Phonyland\NGram\Tokenizer;
+use Phonyland\NGram\NGramCount;
 
 $tokenizer = new Tokenizer();
 $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
 $tokens = $tokenizer->tokenize('sample text');
 
-NGram::unigramCount($tokens);
+NGramCount::unigram($tokens);
 // [
 //     's' => 1,
 //     'a' => 1,
@@ -90,7 +92,7 @@ NGram::unigramCount($tokens);
 //     'x' => 1,
 // ];
 
-NGram::bigramCount($tokens);
+NGramCount::bigram($tokens);
 //  [
 //      'sa' => 1,
 //      'am' => 1,
@@ -102,7 +104,7 @@ NGram::bigramCount($tokens);
 //      'xt' => 1,
 //  ];
 
-NGram::trigramCount($tokens);
+NGramCount::trigram($tokens);
 //  [
 //      'sam' => 1,
 //      'amp' => 1,
@@ -112,7 +114,7 @@ NGram::trigramCount($tokens);
 //      'ext' => 1,
 //  ];
 
-NGram::multigramCount(4, $tokens);
+NGramCount::multigram(4, $tokens);
 // [
 //     'samp' => 1,
 //     'ampl' => 1,
