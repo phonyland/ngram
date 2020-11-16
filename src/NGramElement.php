@@ -11,10 +11,13 @@ namespace Phonyland\NGram;
  */
 final class NGramElement
 {
-    public int   $probabilityAsFirst = 0;
+    /** @phpstan-var array<string, float> $children */
     public array $children           = [];
+
+    /** @phpstan-var array<string, float> $lastChildren */
     public array $lastChildren       = [];
 
     public bool $hasChildren;
+
     public bool $hasLastChildren;
 }
