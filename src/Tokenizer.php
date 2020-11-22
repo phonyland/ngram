@@ -11,6 +11,7 @@ final class Tokenizer
      */
     private array $filters      = [];
     private string $separator   = '';
+    private bool $toLowercase = true;
 
     public const WHITESPACE_SEPARATOR = '/\s/';
 
@@ -50,6 +51,20 @@ final class Tokenizer
     public function setSeparator(string $seperator): self
     {
         $this->separator = $seperator;
+
+        return $this;
+    }
+
+    /**
+     * Converts all tokens to lowercase.
+     *
+     * @param  bool  $toLowercase
+     *
+     * @return $this
+     */
+    public function toLowercase(bool $toLowercase): self
+    {
+        $this->toLowercase = $toLowercase;
 
         return $this;
     }
