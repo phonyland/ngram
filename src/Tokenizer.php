@@ -13,7 +13,6 @@ final class Tokenizer
     private string $separator   = '';
     private bool $toLowercase = true;
 
-    public const WHITESPACE_SEPARATOR = '/\s/';
 
     /**
      * Applies the removal rules and returns tokenized array.

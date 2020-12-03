@@ -42,6 +42,8 @@ final class TokenizerFilter
      */
     public const CHINESE = "/[^ \u{2E80}-\u{2FD5}\u{3400}-\u{4DBF}\u{4E00}-\u{9FFF}\u{F900}-\u{FAFF}]+/";
 
+    public const WHITESPACE_SEPARATOR = '\s';
+
     public function __construct(string $pattern, string $replacement)
     {
         $this->pattern     = $pattern;
