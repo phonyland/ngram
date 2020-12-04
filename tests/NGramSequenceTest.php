@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 use Phonyland\NGram\NGramSequence;
 use Phonyland\NGram\Tokenizer;
+use Phonyland\NGram\TokenizerFilter;
 
 test('N-Gram Sequence: unigram', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
+    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
     $tokens = $tokenizer->tokenize('sample text');
 
     $unigrams = NGramSequence::unigram($tokens);
@@ -29,7 +30,7 @@ test('N-Gram Sequence: unigram', function (): void {
 
 test('N-Gram Sequence: bigram', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
+    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
     $tokens = $tokenizer->tokenize('sample text');
 
     $unigrams = NGramSequence::bigram($tokens);
@@ -49,7 +50,7 @@ test('N-Gram Sequence: bigram', function (): void {
 
 test('N-Gram Sequence: trigram', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
+    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
     $tokens = $tokenizer->tokenize('sample text');
 
     $unigrams = NGramSequence::trigram($tokens);
@@ -67,7 +68,7 @@ test('N-Gram Sequence: trigram', function (): void {
 
 test('N-Gram Sequence: multigram', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
+    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
     $tokens = $tokenizer->tokenize('sample text');
 
     $unigrams = NGramSequence::multigram(4, $tokens);
@@ -83,7 +84,7 @@ test('N-Gram Sequence: multigram', function (): void {
 
 test('N-Gram Sequence: unique unigram', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
+    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
     $tokens = $tokenizer->tokenize('sample text');
 
     $unigrams = NGramSequence::unigram($tokens, true);

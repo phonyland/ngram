@@ -7,8 +7,9 @@ use Phonyland\NGram\TokenizerFilter;
 
 test('TokenizerFilter::NONE', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
-    $tokenizer->addWordFilterRule(TokenizerFilter::NONE);
+    $tokenizer
+        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilter::NONE);
 
     $text = <<<TEXT
             this is a very
@@ -18,7 +19,6 @@ test('TokenizerFilter::NONE', function (): void {
             and interpolates variables :
             Hello
             TEXT;
-
     $expected = [
         'this',
         'is',
@@ -43,11 +43,11 @@ test('TokenizerFilter::NONE', function (): void {
 
 test('TokenizerFilter::FRENCH', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
-    $tokenizer->addWordFilterRule(TokenizerFilter::FRENCH);
+    $tokenizer
+        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilter::FRENCH);
 
     $text = 'éèëêúüûùœàáäâæíïìîóöôòç#';
-
     $expected = 'éèëêúüûùœàáäâæíïìîóöôòç';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
@@ -55,11 +55,11 @@ test('TokenizerFilter::FRENCH', function (): void {
 
 test('TokenizerFilter::ENGLISH', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
-    $tokenizer->addWordFilterRule(TokenizerFilter::ENGLISH);
+    $tokenizer
+        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilter::ENGLISH);
 
     $text = 'a-zæœ#';
-
     $expected = 'azæœ';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
@@ -67,11 +67,11 @@ test('TokenizerFilter::ENGLISH', function (): void {
 
 test('TokenizerFilter::OLD_ENGLISH', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
-    $tokenizer->addWordFilterRule(TokenizerFilter::OLD_ENGLISH);
+    $tokenizer
+        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilter::OLD_ENGLISH);
 
     $text = 'a-zþðƿȝæœ#';
-
     $expected = 'azþðƿȝæœ';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
@@ -79,11 +79,11 @@ test('TokenizerFilter::OLD_ENGLISH', function (): void {
 
 test('TokenizerFilter::ALPHABETICAL', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
-    $tokenizer->addWordFilterRule(TokenizerFilter::ALPHABETICAL);
+    $tokenizer
+        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilter::ALPHABETICAL);
 
     $text = 'a-z#';
-
     $expected = 'az';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
@@ -91,11 +91,11 @@ test('TokenizerFilter::ALPHABETICAL', function (): void {
 
 test('TokenizerFilter::NUMERICAL', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
-    $tokenizer->addWordFilterRule(TokenizerFilter::NUMERICAL);
+    $tokenizer
+        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilter::NUMERICAL);
 
     $text = 'a-z#123';
-
     $expected = '123';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
@@ -103,11 +103,11 @@ test('TokenizerFilter::NUMERICAL', function (): void {
 
 test('TokenizerFilter::ALPHANUMBERICAL', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
-    $tokenizer->addWordFilterRule(TokenizerFilter::ALPHANUMBERICAL);
+    $tokenizer
+        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilter::ALPHANUMBERICAL);
 
     $text = 'a-z#123';
-
     $expected = 'az123';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
@@ -115,11 +115,11 @@ test('TokenizerFilter::ALPHANUMBERICAL', function (): void {
 
 test('TokenizerFilter::LATIN_EXTENDED_ALPHABETICAL', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
-    $tokenizer->addWordFilterRule(TokenizerFilter::LATIN_EXTENDED_ALPHABETICAL);
+    $tokenizer
+        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilter::LATIN_EXTENDED_ALPHABETICAL);
 
     $text = 'a-zéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß#';
-
     $expected = 'azéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
@@ -127,11 +127,11 @@ test('TokenizerFilter::LATIN_EXTENDED_ALPHABETICAL', function (): void {
 
 test('TokenizerFilter::LATIN_EXTENDED_ALPHANUMERICAL', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
-    $tokenizer->addWordFilterRule(TokenizerFilter::LATIN_EXTENDED_ALPHANUMERICAL);
+    $tokenizer
+        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilter::LATIN_EXTENDED_ALPHANUMERICAL);
 
     $text = '0-93a-zéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß#';
-
     $expected = '093azéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
@@ -139,11 +139,11 @@ test('TokenizerFilter::LATIN_EXTENDED_ALPHANUMERICAL', function (): void {
 
 test('TokenizerFilter::NO_SYMBOLS', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
-    $tokenizer->addWordFilterRule(TokenizerFilter::NO_SYMBOLS);
+    $tokenizer
+        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilter::NO_SYMBOLS);
 
     $text = 'abc#%^ abc#%^';
-
     $expected = ['abc', 'abc'];
 
     expect($tokenizer->tokenize($text))->toBe($expected);
@@ -151,11 +151,11 @@ test('TokenizerFilter::NO_SYMBOLS', function (): void {
 
 test('TokenizerFilter::JAPANESE', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
-    $tokenizer->addWordFilterRule(TokenizerFilter::JAPANESE);
+    $tokenizer
+        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilter::JAPANESE);
 
     $text = '科カ苛 abc';
-
     $expected = ['科カ苛'];
 
     expect($tokenizer->tokenize($text))->toBe($expected);
@@ -163,11 +163,11 @@ test('TokenizerFilter::JAPANESE', function (): void {
 
 test('TokenizerFilter::CHINESE', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
-    $tokenizer->addWordFilterRule(TokenizerFilter::CHINESE);
+    $tokenizer
+        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilter::CHINESE);
 
     $text = '文本 abc';
-
     $expected = ['文本'];
 
     expect($tokenizer->tokenize($text))->toBe($expected);
