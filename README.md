@@ -26,20 +26,131 @@ composer require phonyland/ngram
 
 ### Tokenizer
 
+### Word Tokenization
+
+```php
+$tokenizer->tokenize($text);
+```
+
+<details>
+  <summary>⌨️ Usage</summary>
+
 ```php
 use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\TokenizerFilter;
 
 $tokenizer = new Tokenizer();
-$tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
-$tokenizer->addRemovalRule(TokenizerFilter::NO_SYMBOLS);
-$tokenizer->addRemovalRule('/m/');
+$tokenizer
+  ->addWordSeparatorPattern(';')
+  ->addWordSeparatorPattern('\s')
+  ->addWordFilterRule(TokenizerFilter::NO_SYMBOLS);
 
-$text = 'sample# text%';
+$text = 'sample   text;sample;text';
 
 $tokenizer->tokenize($text);
-// ['saple', 'text']
 ```
+
+</details>
+
+<details>
+    <summary>🖥 Output</summary>
+
+```php
+[
+    "sample",
+    "text",
+    "sample",
+    "text",
+];
+```
+
+</details>
+
+### Sentence Tokenization
+
+```php
+$tokenizer->sentences($text);
+```
+
+<details>
+  <summary>⌨️ Usage</summary>
+
+```php
+use Phonyland\NGram\Tokenizer;
+
+$tokenizer = new Tokenizer();
+$tokenizer
+  ->addSentenceSeparatorPattern('.')
+  ->addSentenceSeparatorPattern('!')
+  ->addSentenceSeparatorPattern('?');
+
+$text = 'Sample Sentence. Sample Sentence! Sample Sentence? Sample Sentence no. 4?! Sample sample sentence... End';
+
+$tokenizer->sentences($text);
+```
+
+</details>
+
+<details>
+    <summary>🖥 Output</summary>
+
+```php
+[
+    "Sample Sentence.",
+    "Sample Sentence!",
+    "Sample Sentence?",
+    "Sample Sentence no.",
+    "4?!",
+    "Sample sample sentence...",
+    "End",
+];
+```
+
+</details>
+
+### Word Tokenization by Sentences
+
+```php
+$tokenizer->tokenizeBySentences($text);
+```
+
+<details>
+  <summary>⌨️ Usage</summary>
+
+```php
+use Phonyland\NGram\Tokenizer;
+use Phonyland\NGram\TokenizerFilter;
+
+$tokenizer = new Tokenizer();
+$tokenizer
+  ->addSentenceSeparatorPattern('.')
+  ->addSentenceSeparatorPattern('!')
+  ->addSentenceSeparatorPattern('?')
+  ->addWordFilterRule(TokenizerFilter::NO_SYMBOLS)
+  ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
+
+$text = 'Sample Sentence. Sample Sentence! Sample Sentence? Sample Sentence no. 4?! Sample sample sentence... End';
+
+$tokenizer->tokenizeBySentences($text);
+```
+
+</details>
+
+<details>
+    <summary>🖥 Output</summary>
+
+```php
+[
+    ["Sample", "Sentence"],
+    ["Sample", "Sentence"],
+    ["Sample", "Sentence"],
+    ["Sample", "Sentence", "no"],
+    ["Sample", "sample", "sentence"],
+    ["End"],
+];
+```
+
+</details>
 
 ### N-Gram
 
@@ -50,7 +161,7 @@ use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\NGramSequence;
 
 $tokenizer = new Tokenizer();
-$tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
+$tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
 $tokens = $tokenizer->tokenize('sample text');
 
 NGramSequence::multigram(4, $tokens);
@@ -68,7 +179,7 @@ use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\NGramCount;
 
 $tokenizer = new Tokenizer();
-$tokenizer->setSeparator(Tokenizer::WHITESPACE_SEPARATOR);
+$tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
 $tokens = $tokenizer->tokenize('sample text');
 
 NGramCount::multigram(4, $tokens);
