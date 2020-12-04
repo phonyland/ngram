@@ -158,17 +158,8 @@ $tokenizer->tokenizeBySentences($text);
 
 ```php
 NGramSequence::multigram($n, $tokens, $isUnique);
-```
-
-```php
 NGramSequence::trigram($tokens, $isUnique);
-```
-
-```php
 NGramSequence::bigram($tokens, $isUnique);
-```
-
-```php
 NGramSequence::unigram($tokens, $isUnique);
 ```
 
