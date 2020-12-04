@@ -157,6 +157,25 @@ $tokenizer->tokenizeBySentences($text);
 #### N-Gram Sequence
 
 ```php
+NGramSequence::multigram($n, $tokens, $isUnique);
+```
+
+```php
+NGramSequence::trigram($tokens, $isUnique);
+```
+
+```php
+NGramSequence::bigram($tokens, $isUnique);
+```
+
+```php
+NGramSequence::unigram($tokens, $isUnique);
+```
+
+<details>
+    <summary>⌨️ Usage</summary>
+
+```php
 use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\NGramSequence;
 
@@ -171,6 +190,8 @@ NGramSequence::multigram(4, $tokens);
 NGramSequence::unigram($tokens, true);
 // ['s', 'a', 'm', 'p', 'l', 'e', 't', 'x'];
 ```
+
+</details>
 
 #### N-Gram Sequences with Count
 

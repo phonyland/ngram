@@ -13,7 +13,7 @@ final class NGramSequence
      *
      * @phpstan-return array<string>
      */
-    public static function multigram(int $n, array $tokens, bool $unique = false): array
+    public static function multigram(int $n, array $tokens, bool $isUnique = false): array
     {
         /** @phpstan-var array<string> $nGrams */
         $nGrams = [];
@@ -26,7 +26,7 @@ final class NGramSequence
             }
         }
 
-        return $unique ? array_values(array_unique($nGrams)) : $nGrams;
+        return $isUnique ? array_values(array_unique($nGrams)) : $nGrams;
     }
 
     /**
@@ -36,9 +36,9 @@ final class NGramSequence
      *
      * @phpstan-return array<string>
      */
-    public static function unigram(array $tokens, bool $unique = false): array
+    public static function unigram(array $tokens, bool $isUnique = false): array
     {
-        return self::multigram(1, $tokens, $unique);
+        return self::multigram(1, $tokens, $isUnique);
     }
 
     /**
@@ -48,9 +48,9 @@ final class NGramSequence
      *
      * @phpstan-return array<string>
      */
-    public static function bigram(array $tokens, bool $unique = false): array
+    public static function bigram(array $tokens, bool $isUnique = false): array
     {
-        return self::multigram(2, $tokens, $unique);
+        return self::multigram(2, $tokens, $isUnique);
     }
 
     /**
@@ -60,8 +60,8 @@ final class NGramSequence
      *
      * @phpstan-return array<string>
      */
-    public static function trigram(array $tokens, bool $unique = false): array
+    public static function trigram(array $tokens, bool $isUnique = false): array
     {
-        return self::multigram(3, $tokens, $unique);
+        return self::multigram(3, $tokens, $isUnique);
     }
 }
