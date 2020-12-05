@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Phonyland\NGram;
 
+use RuntimeException;
+
 final class Tokenizer
 {
     // region Attributes
@@ -56,6 +58,10 @@ final class Tokenizer
      */
     public function sentences(string $text): array
     {
+        if ($this->sentenceSeparationPatterns === []) {
+            throw new RuntimeException('No sentence separation pattern given!');
+        }
+
         $sentenceSeparationPattern = implode('', $this->sentenceSeparationPatterns);
 
         /** @phpstan-var array<string> */
