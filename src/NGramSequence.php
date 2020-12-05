@@ -30,15 +30,15 @@ final class NGramSequence
     }
 
     /**
-     * Generates unigrams for given array of tokens.
+     * Generates trigrams for given array of tokens.
      *
      * @phpstan-param  array<string> $tokens
      *
      * @phpstan-return array<string>
      */
-    public static function unigram(array $tokens, bool $isUnique = false): array
+    public static function trigram(array $tokens, bool $isUnique = false): array
     {
-        return self::multigram(1, $tokens, $isUnique);
+        return self::multigram(3, $tokens, $isUnique);
     }
 
     /**
@@ -54,14 +54,14 @@ final class NGramSequence
     }
 
     /**
-     * Generates trigrams for given array of tokens.
+     * Generates unigrams for given array of tokens.
      *
      * @phpstan-param  array<string> $tokens
      *
      * @phpstan-return array<string>
      */
-    public static function trigram(array $tokens, bool $isUnique = false): array
+    public static function unigram(array $tokens, bool $isUnique = false): array
     {
-        return self::multigram(3, $tokens, $isUnique);
+        return self::multigram(1, $tokens, $isUnique);
     }
 }
