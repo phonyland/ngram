@@ -27,7 +27,7 @@ composer require phonyland/ngram
 ### Tokenizer
 
 ### Word Tokenization
-
+ 
 ```php
 $tokenizer->tokenize($text);
 ```
@@ -187,6 +187,18 @@ NGramSequence::unigram($tokens, true);
 #### N-Gram Sequences with Count
 
 ```php
+NGramCount::multigram(4, $tokens);
+NGramCount::trigram($tokens);
+NGramCount::bigram($tokens);
+NGramCount::unigram($tokens);
+
+NGramCount::elementOnArray($element, $elements);
+```
+
+<details>
+    <summary>⌨️ Usage</summary>
+
+```php
 use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\NGramCount;
 
@@ -202,6 +214,8 @@ NGramCount::multigram(4, $tokens);
 //     'text' => 1,
 // ];
 ```
+
+</details>
 
 #### N-Gram Frequency
 

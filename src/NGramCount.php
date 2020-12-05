@@ -32,15 +32,15 @@ final class NGramCount
     }
 
     /**
-     * Generates unigrams with count for given array of tokens.
+     * Generates trigrams with count for given array of tokens.
      *
      * @phpstan-param  array<string> $tokens
      *
      * @phpstan-return array<string, int>
      */
-    public static function unigram(array $tokens): array
+    public static function trigram(array $tokens): array
     {
-        return self::multigram(1, $tokens);
+        return self::multigram(3, $tokens);
     }
 
     /**
@@ -56,19 +56,19 @@ final class NGramCount
     }
 
     /**
-     * Generates trigrams with count for given array of tokens.
+     * Generates unigrams with count for given array of tokens.
      *
      * @phpstan-param  array<string> $tokens
      *
      * @phpstan-return array<string, int>
      */
-    public static function trigram(array $tokens): array
+    public static function unigram(array $tokens): array
     {
-        return self::multigram(3, $tokens);
+        return self::multigram(1, $tokens);
     }
 
     /**
-     * Checks if the given $element exists on $elements array
+     * Tracks the given element count on $elements array
      *
      * @phpstan-param   array<string, int>   $elements
      *
