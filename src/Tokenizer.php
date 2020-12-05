@@ -10,8 +10,8 @@ final class Tokenizer
 {
     // region Attributes
 
-    /** @phpstan-var array<TokenizerFilter> */
-    private array $filters;
+    /** @phpstan-var array<TokenizerFilter> $wordFilters */
+    private array $wordFilters;
     /** @phpstan-var array<string> $wordSeparationPatterns */
     private array $wordSeparationPatterns;
     /** @phpstan-var array<string> $sentenceSeparationPatterns */
@@ -25,7 +25,7 @@ final class Tokenizer
 
     public function __construct()
     {
-        $this->filters = [];
+        $this->wordFilters = [];
         $this->wordSeparationPatterns = [];
         $this->sentenceSeparationPatterns = [];
         $this->toLowercase = false;
@@ -38,6 +38,10 @@ final class Tokenizer
      */
     public function tokenize(string $text): array
     {
+        if ($this->wordSeparationPatterns === []) {
+            throw new RuntimeException('No word separation pattern given!');
+        }
+
         $wordSeparationPattern = '/[' . implode('', $this->wordSeparationPatterns) .']/';
 
         /** @phpstan-var  array<string> $tokens */
@@ -99,7 +103,7 @@ final class Tokenizer
     {
         return array_map(function (TokenizerFilter $filter): string {
             return $filter->pattern;
-        }, $this->filters);
+        }, $this->wordFilters);
     }
 
     /**
@@ -111,7 +115,7 @@ final class Tokenizer
     {
         return array_map(function (TokenizerFilter $filter): string {
             return $filter->replacement;
-        }, $this->filters);
+        }, $this->wordFilters);
     }
 
     /**
@@ -144,7 +148,7 @@ final class Tokenizer
      */
     public function addWordFilterRule(string $searchRegex, string $replaceString = ''): self
     {
-        $this->filters[] = new TokenizerFilter($searchRegex, $replaceString);
+        $this->wordFilters[] = new TokenizerFilter($searchRegex, $replaceString);
 
         return $this;
     }
