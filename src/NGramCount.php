@@ -24,11 +24,7 @@ final class NGramCount
             for ($i = 0; $i < $ngramCount; $i++) {
                 $ngram = mb_substr($token, $i, $n);
 
-                if (array_key_exists($ngram, $nGrams)) {
-                    $nGrams[$ngram]++;
-                } else {
-                    $nGrams[$ngram] = 1;
-                }
+                self::elementOnArray($ngram, $nGrams);
             }
         }
 
@@ -69,5 +65,20 @@ final class NGramCount
     public static function trigram(array $tokens): array
     {
         return self::multigram(3, $tokens);
+    }
+
+    /**
+     * Checks if the given $element exists on $elements array
+     *
+     * @phpstan-param   array<string, int>   $elements
+     *
+     * @phpstan-return  array<string, int>
+     */
+    public static function elementOnArray(string $element, array &$elements): array
+    {
+        $elements[$element] ??= 0;
+        $elements[$element]++;
+
+        return $elements;
     }
 }
