@@ -164,11 +164,20 @@ final class Tokenizer
     /**
      * Adds a separator pattern for the splitting into sentences.
      *
+     * @phpstan-param string|array<string> $sentenceSeparationPattern
+     *
      * @return $this
      */
-    public function addSentenceSeparatorPattern(string $sentenceSeparationPattern): self
+    public function addSentenceSeparatorPattern($sentenceSeparationPattern): self
     {
-        $this->sentenceSeparationPatterns[] = $sentenceSeparationPattern;
+        if (is_array($sentenceSeparationPattern)) {
+            $this->sentenceSeparationPatterns = array_merge(
+                $this->sentenceSeparationPatterns,
+                $sentenceSeparationPattern
+            );
+        } else {
+            $this->sentenceSeparationPatterns[] = $sentenceSeparationPattern;
+        }
 
         return $this;
     }
