@@ -6,29 +6,56 @@ use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\NGramFrequency;
 use Phonyland\NGram\TokenizerFilter;
 
-test('N-Gram Frequency: unigram', function (): void {
+test('N-Gram Frequency: Multigram', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->setSeparator(TokenizerFilter::ALPHABETICAL);
+    $tokenizer
+        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilter::ALPHABETICAL);
     $tokens = $tokenizer->tokenize('bombadil! bombadillo!');
 
-    $unigrams = NGramFrequency::unigram($tokens);
+    $unigrams = NGramFrequency::multigram(4, $tokens);
 
     $expected = [
-        'b' => 0.2222222222222222,
-        'o' => 0.16666666666666666,
-        'm' => 0.1111111111111111,
-        'a' => 0.1111111111111111,
-        'd' => 0.1111111111111111,
-        'i' => 0.1111111111111111,
-        'l' => 0.16666666666666666,
+        'bomb' => 0.16666666666666666,
+        'omba' => 0.16666666666666666,
+        'mbad' => 0.16666666666666666,
+        'badi' => 0.16666666666666666,
+        'adil' => 0.16666666666666666,
+        'dill' => 0.08333333333333333,
+        'illo' => 0.08333333333333333,
     ];
 
     expect($unigrams)->toBe($expected);
 });
 
-test('N-Gram Frequency: bigram', function (): void {
+test('N-Gram Frequency: Trigram', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->setSeparator(TokenizerFilter::ALPHABETICAL);
+    $tokenizer
+        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilter::ALPHABETICAL);
+    $tokens = $tokenizer->tokenize('bombadil! bombadillo!');
+
+    $unigrams = NGramFrequency::trigram($tokens);
+
+    $expected = [
+        'bom' => 0.14285714285714285,
+        'omb' => 0.14285714285714285,
+        'mba' => 0.14285714285714285,
+        'bad' => 0.14285714285714285,
+        'adi' => 0.14285714285714285,
+        'dil' => 0.14285714285714285,
+        'ill' => 0.07142857142857142,
+        'llo' => 0.07142857142857142,
+    ];
+
+    expect($unigrams)->toBe($expected);
+});
+
+test('N-Gram Frequency: Bigram', function (): void {
+    $tokenizer = new Tokenizer();
+    $tokenizer
+        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilter::ALPHABETICAL);
     $tokens = $tokenizer->tokenize('bombadil! bombadillo!');
 
     $unigrams = NGramFrequency::bigram($tokens);
@@ -48,42 +75,23 @@ test('N-Gram Frequency: bigram', function (): void {
     expect($unigrams)->toBe($expected);
 });
 
-test('N-Gram Frequency: trigram', function (): void {
+test('N-Gram Frequency: Unigram', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->setSeparator(TokenizerFilter::ALPHABETICAL);
+    $tokenizer
+        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilter::ALPHABETICAL);
     $tokens = $tokenizer->tokenize('bombadil! bombadillo!');
 
-    $unigrams = NGramFrequency::trigram($tokens);
+    $unigrams = NGramFrequency::unigram($tokens);
 
     $expected = [
-        'bom' => 0.14285714285714285,
-        'omb' => 0.14285714285714285,
-        'mba' => 0.14285714285714285,
-        'bad' => 0.14285714285714285,
-        'adi' => 0.14285714285714285,
-        'dil' => 0.14285714285714285,
-        'ill' => 0.07142857142857142,
-        'llo' => 0.07142857142857142,
-    ];
-
-    expect($unigrams)->toBe($expected);
-});
-
-test('N-Gram Frequency: multigram', function (): void {
-    $tokenizer = new Tokenizer();
-    $tokenizer->setSeparator(TokenizerFilter::ALPHABETICAL);
-    $tokens = $tokenizer->tokenize('bombadil! bombadillo!');
-
-    $unigrams = NGramFrequency::multigram(4, $tokens);
-
-    $expected = [
-        'bomb' => 0.16666666666666666,
-        'omba' => 0.16666666666666666,
-        'mbad' => 0.16666666666666666,
-        'badi' => 0.16666666666666666,
-        'adil' => 0.16666666666666666,
-        'dill' => 0.08333333333333333,
-        'illo' => 0.08333333333333333,
+        'b' => 0.2222222222222222,
+        'o' => 0.16666666666666666,
+        'm' => 0.1111111111111111,
+        'a' => 0.1111111111111111,
+        'd' => 0.1111111111111111,
+        'i' => 0.1111111111111111,
+        'l' => 0.16666666666666666,
     ];
 
     expect($unigrams)->toBe($expected);

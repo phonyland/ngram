@@ -169,6 +169,7 @@ NGramSequence::unigram($tokens, $isUnique);
 ```php
 use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\NGramSequence;
+use Phonyland\NGram\TokenizerFilter;
 
 $tokenizer = new Tokenizer();
 $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
@@ -220,8 +221,23 @@ NGramCount::multigram(4, $tokens);
 #### N-Gram Frequency
 
 ```php
+NGramFrequency::multigram(4, $tokens);
+NGramFrequency::multigram($tokens);
+NGramFrequency::bigram($tokens);
+NGramFrequency::unigram($tokens);
+```
+
+<details>
+    <summary>⌨️ Usage</summary>
+
+```php
+use Phonyland\NGram\Tokenizer;
+use Phonyland\NGram\NGramFrequency;
+use Phonyland\NGram\TokenizerFilter;
+
 $tokenizer = new Tokenizer();
-$tokenizer->setSeparator(TokenizerFilter::ALPHABETICAL);
+$tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
+$tokenizer->addWordFilterRule(TokenizerFilter::ALPHABETICAL);
 $tokens = $tokenizer->tokenize('bombadil! bombadillo!');
 
 NGramFrequency::multigram(4, $tokens);
@@ -235,6 +251,8 @@ NGramFrequency::multigram(4, $tokens);
 //    'illo' => 0.08333333333333333,
 //]
 ```
+
+</details>
 
 ---
 
