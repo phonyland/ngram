@@ -225,6 +225,8 @@ NGramFrequency::multigram(4, $tokens);
 NGramFrequency::multigram($tokens);
 NGramFrequency::bigram($tokens);
 NGramFrequency::unigram($tokens);
+
+NGramFrequency::frequencyFromCount($countArray);
 ```
 
 <details>

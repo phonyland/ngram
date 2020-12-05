@@ -15,18 +15,10 @@ final class NGramFrequency
      */
     public static function multigram(int $n, array $tokens): array
     {
-        /** @phpstan-var array<string, float> $elementsWithCount */
+        /** @phpstan-var array<string, int> $elementsWithCount */
         $elementsWithCount = NGramCount::multigram($n, $tokens);
-        $ngrams = array_keys($elementsWithCount);
-        $elementCount = count($elementsWithCount);
 
-        $sumOfAllApperances = array_sum($elementsWithCount);
-
-        for ($i = 0; $i < $elementCount; $i++) {
-            $elementsWithCount[$ngrams[$i]] /= $sumOfAllApperances;
-        }
-
-        return $elementsWithCount;
+        return self::frequencyFromCount($elementsWithCount);
     }
 
     /**
@@ -63,5 +55,27 @@ final class NGramFrequency
     public static function unigram(array $tokens): array
     {
         return self::multigram(1, $tokens);
+    }
+
+    /**
+     * Calculates the frequency from a n-gram count array.
+     *
+     * @phpstan-param   array<string, int>   $countArray
+     *
+     * @phpstan-return  array<string, float>
+     */
+    public static function frequencyFromCount(array &$countArray): array
+    {
+        $ngrams = array_keys($countArray);
+        $elementCount = count($countArray);
+
+        $sumOfAllApperances = array_sum($countArray);
+
+        for ($i = 0; $i < $elementCount; $i++) {
+            $countArray[$ngrams[$i]] /= $sumOfAllApperances;
+            // TODO: Allow to adjust the precision here
+        }
+
+        return $countArray;
     }
 }
