@@ -42,6 +42,8 @@ final class Tokenizer
             throw new RuntimeException('No word separation pattern given!');
         }
 
+        $text = $this->toLowercase ? $this->toLowercaseTokens($text) : $text;
+
         $wordSeparationPattern = '/[' . implode('', $this->wordSeparationPatterns) .']/';
 
         /** @phpstan-var  array<string> $tokens */
@@ -49,8 +51,6 @@ final class Tokenizer
 
         /** @phpstan-var  array<string> $tokens */
         $tokens = preg_replace($this->getFilterPatterns(), $this->getFilterReplacements(), $tokens);
-
-        $tokens = $this->toLowercase ? $this->toLowercaseTokens($tokens) : $tokens;
 
         return array_filter($tokens, fn ($token) => !is_null($token) && $token !== '');
     }
@@ -121,20 +121,10 @@ final class Tokenizer
     /**
      * Lowercases all tokens.
      *
-     * @param  array  $tokens
-     * @phpstan-param array<string> $tokens
-     *
-     * @return array
-     * @phpstan-return array<string>
      */
-    private function toLowercaseTokens(array &$tokens): array
+    private function toLowercaseTokens(string $text): string
     {
-        $tokenCount = count($tokens);
-        for ($i = 0; $i < $tokenCount; $i++) {
-            $tokens[$i] = mb_convert_case($tokens[$i], MB_CASE_LOWER, 'UTF-8');
-        }
-
-        return $tokens;
+        return mb_convert_case($text, MB_CASE_LOWER, 'UTF-8');
     }
 
     // endregion

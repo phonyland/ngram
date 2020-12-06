@@ -10,9 +10,9 @@
 
 </div>
 
-This repository contains the N-Gram Tools for 🙃 Phony Language.
+This repository contains the N-Gram Tools for 🙃&nbsp;Phony Language.
 
-## 🚀 Installation
+## 🚀nbsp;Installation
 
 Requires PHP `>= 7.4` or `>= 8.0`.
 
@@ -22,7 +22,7 @@ You can install the package via composer:
 composer require phonyland/ngram
 ```
 
-## ⌨️ Usage
+## ⌨️&nbsp;Usage
 
 ### Tokenizer
 
@@ -33,7 +33,7 @@ $tokenizer->tokenize($text);
 ```
 
 <details>
-  <summary>⌨️ Usage</summary>
+  <summary>⌨️&nbsp;Usage</summary>
 
 ```php
 use Phonyland\NGram\Tokenizer;
@@ -53,7 +53,7 @@ $tokenizer->tokenize($text);
 </details>
 
 <details>
-    <summary>🖥 Output</summary>
+    <summary>🖥&nbsp;Output</summary>
 
 ```php
 [
@@ -73,7 +73,7 @@ $tokenizer->sentences($text);
 ```
 
 <details>
-  <summary>⌨️ Usage</summary>
+  <summary>⌨️&nbsp;Usage</summary>
 
 ```php
 use Phonyland\NGram\Tokenizer;
@@ -92,7 +92,7 @@ $tokenizer->sentences($text);
 </details>
 
 <details>
-    <summary>🖥 Output</summary>
+    <summary>🖥&nbsp;Output</summary>
 
 ```php
 [
@@ -115,7 +115,7 @@ $tokenizer->tokenizeBySentences($text);
 ```
 
 <details>
-  <summary>⌨️ Usage</summary>
+  <summary>⌨️&nbsp;Usage</summary>
 
 ```php
 use Phonyland\NGram\Tokenizer;
@@ -137,7 +137,7 @@ $tokenizer->tokenizeBySentences($text);
 </details>
 
 <details>
-    <summary>🖥 Output</summary>
+    <summary>🖥&nbsp;Output</summary>
 
 ```php
 [
@@ -164,7 +164,7 @@ NGramSequence::unigram($tokens, $isUnique);
 ```
 
 <details>
-    <summary>⌨️ Usage</summary>
+    <summary>⌨️&nbsp;Usage</summary>
 
 ```php
 use Phonyland\NGram\Tokenizer;
@@ -197,7 +197,7 @@ NGramCount::elementOnArray($element, $elements);
 ```
 
 <details>
-    <summary>⌨️ Usage</summary>
+    <summary>⌨️&nbsp;Usage</summary>
 
 ```php
 use Phonyland\NGram\Tokenizer;
@@ -230,7 +230,7 @@ NGramFrequency::frequencyFromCount($countArray);
 ```
 
 <details>
-    <summary>⌨️ Usage</summary>
+    <summary>⌨️&nbsp;Usage</summary>
 
 ```php
 use Phonyland\NGram\Tokenizer;
@@ -258,7 +258,7 @@ NGramFrequency::multigram(4, $tokens);
 
 ---
 
-If you want to start generating fake data with 🙃 Phony, please visit the main **[Phony Repository](https://github.com/phonyland/phony)**.
+If you want to start generating fake data with 🙃&nbsp;Phony, please visit the main **[Phony Repository](https://github.com/phonyland/phony)**.
 
 - Explore the docs: **[phony.land »](https://phony.land/)**
 - Follow us on Twitter: **[@phonyphp »](https://twitter.com/phonyphp)**
