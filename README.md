@@ -259,16 +259,18 @@ NGramFrequency::multigram(4, $tokens);
 
 <div align="center">
 
-***
+# 🙃   
 
-If you want to start generating fake data with Phony Framework,  
+If you want to start generating fake data with 🙃 Phony Framework,  
 visit the main **[Phony Repository](https://github.com/phonyland/phony)**.
 
 Explore the docs: **[phony.land »](https://phony.land/)**  
 Follow us on Twitter: **[@phonyphp »](https://twitter.com/phonyphp)**
-
-Phony Framework was created by  
+ 
+**[🙃 Phony Framework](https://phony.land)**  
+was created by  
 **[Yunus Emre Deligöz](https://twitter.com/yedeligoez)**  
 under  
 **[MIT license](https://opensource.org/licenses/MIT)**.
+
 </div>
