@@ -15,7 +15,6 @@ final class NGramCount
      */
     public static function multigram(int $n, array $tokens): array
     {
-        /** @phpstan-var array<string, int> $nGrams */
         $nGrams = [];
 
         foreach ($tokens as $token) {
@@ -68,7 +67,7 @@ final class NGramCount
     }
 
     /**
-     * Tracks the given element count on $elements array
+     * Tracks the given element count on $elements array.
      *
      * @phpstan-param   array<string, int>   $elements
      *

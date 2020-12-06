@@ -26,7 +26,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         SetList::PHP_70,
         SetList::PHP_71,
         SetList::PHP_72,
-        SetList::PHP_73
+        SetList::PHP_73,
+        SetList::PHP_74
     ]);
 
     $parameters->set(Option::PATHS, [__DIR__ . '/src', __DIR__ . '/tests']);

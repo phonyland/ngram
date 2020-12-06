@@ -31,7 +31,7 @@ it('Tokenizer: Seperates the text with regex patterns', function (): void {
     $tokenizer = new Tokenizer();
     $tokenizer->addWordSeparatorPattern('\s');
 
-    $text = 'sample     text '.PHP_EOL.'sample text';
+    $text = 'sample     text ' . PHP_EOL . 'sample text';
     $expected = ['sample', 'text', 'sample', 'text'];
 
     expect($tokenizer->tokenize($text))->toBe($expected);

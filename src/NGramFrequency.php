@@ -66,7 +66,7 @@ final class NGramFrequency
      */
     public static function frequencyFromCount(array &$countArray): array
     {
-        $ngrams = array_keys($countArray);
+        $ngrams       = array_keys($countArray);
         $elementCount = count($countArray);
 
         $sumOfAllApperances = array_sum($countArray);

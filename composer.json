@@ -1,6 +1,6 @@
 {
     "name": "phonyland/ngram",
-    "description": "N-Gram Tools for \uD83D\uDE43 Phony Language with sanitizing, tokenization, n-gram extraction, frequency mapping, and word generation.",
+    "description": "N-Gram Tools for \uD83D\uDE43 Phony Language Models with sanitizing, tokenization, n-gram extraction, frequency mapping.",
     "type": "library",
     "license": "MIT",
     "authors": [

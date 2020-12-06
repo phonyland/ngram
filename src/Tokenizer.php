@@ -25,10 +25,10 @@ final class Tokenizer
 
     public function __construct()
     {
-        $this->wordFilters = [];
-        $this->wordSeparationPatterns = [];
+        $this->wordFilters                = [];
+        $this->wordSeparationPatterns     = [];
         $this->sentenceSeparationPatterns = [];
-        $this->toLowercase = false;
+        $this->toLowercase                = false;
     }
 
     /**
@@ -44,7 +44,7 @@ final class Tokenizer
 
         $text = $this->toLowercase ? $this->toLowercaseTokens($text) : $text;
 
-        $wordSeparationPattern = '/[' . implode('', $this->wordSeparationPatterns) .']/';
+        $wordSeparationPattern = '/[' . implode('', $this->wordSeparationPatterns) . ']/';
 
         /** @phpstan-var  array<string> $tokens */
         $tokens = preg_split($wordSeparationPattern, $text, -1, PREG_SPLIT_NO_EMPTY);
@@ -68,8 +68,10 @@ final class Tokenizer
 
         $sentenceSeparationPattern = implode('', $this->sentenceSeparationPatterns);
 
-        /** @phpstan-var array<string> */
-        return preg_split('/(?<=['. $sentenceSeparationPattern .'])\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
+        /** @phpstan-var  array<string> $sentences */
+        $sentences =  preg_split('/(?<=[' . $sentenceSeparationPattern . '])\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
+
+        return array_filter($sentences, fn ($sentence) => !is_null($sentence) && $sentence !== '');
     }
 
     /**
@@ -101,9 +103,7 @@ final class Tokenizer
      */
     private function getFilterPatterns(): array
     {
-        return array_map(function (TokenizerFilter $filter): string {
-            return $filter->pattern;
-        }, $this->wordFilters);
+        return array_map(fn (TokenizerFilter $filter): string => $filter->pattern, $this->wordFilters);
     }
 
     /**
@@ -113,14 +113,11 @@ final class Tokenizer
      */
     private function getFilterReplacements(): array
     {
-        return array_map(function (TokenizerFilter $filter): string {
-            return $filter->replacement;
-        }, $this->wordFilters);
+        return array_map(fn (TokenizerFilter $filter): string => $filter->replacement, $this->wordFilters);
     }
 
     /**
      * Lowercases all tokens.
-     *
      */
     private function toLowercaseTokens(string $text): string
     {
@@ -178,8 +175,6 @@ final class Tokenizer
 
     /**
      * Converts all tokens to lowercase.
-     *
-     * @param  bool  $toLowercase
      *
      * @return $this
      */
