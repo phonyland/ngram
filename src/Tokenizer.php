@@ -49,10 +49,10 @@ final class Tokenizer
         /** @phpstan-var  array<string> $tokens */
         $tokens = preg_split($wordSeparationPattern, $text, -1, PREG_SPLIT_NO_EMPTY);
 
-        /** @phpstan-var  array<string> $tokens */
+        /** @phpstan-var  array<string|null> $tokens */
         $tokens = preg_replace($this->getFilterPatterns(), $this->getFilterReplacements(), $tokens);
 
-        return array_filter($tokens, fn ($token) => !is_null($token) && $token !== '');
+        return array_filter($tokens, fn (string|null $token): bool => !is_null($token) && $token !== '');
     }
 
     /**
@@ -68,10 +68,10 @@ final class Tokenizer
 
         $sentenceSeparationPattern = implode('', $this->sentenceSeparationPatterns);
 
-        /** @phpstan-var  array<string> $sentences */
+        /** @phpstan-var  array<string|null> $sentences */
         $sentences =  preg_split('/(?<=[' . $sentenceSeparationPattern . '])\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
 
-        return array_filter($sentences, fn ($sentence) => !is_null($sentence) && $sentence !== '');
+        return array_filter($sentences, fn (string|null $sentence): bool => !is_null($sentence) && $sentence !== '');
     }
 
     /**
@@ -125,13 +125,10 @@ final class Tokenizer
     }
 
     // endregion
-
     // region Fluent Config Setters
 
     /**
      * Adds a new removal rule.
-     *
-     * @return $this
      */
     public function addWordFilterRule(string $searchRegex, string $replaceString = ''): self
     {
@@ -142,8 +139,6 @@ final class Tokenizer
 
     /**
      * Adds a separator pattern for the splitting the given text.
-     *
-     * @return $this
      */
     public function addWordSeparatorPattern(string $wordSeparationPattern): self
     {
@@ -156,8 +151,6 @@ final class Tokenizer
      * Adds a separator pattern for the splitting into sentences.
      *
      * @phpstan-param string|array<string> $sentenceSeparationPattern
-     *
-     * @return $this
      */
     public function addSentenceSeparatorPattern($sentenceSeparationPattern): self
     {
@@ -175,8 +168,6 @@ final class Tokenizer
 
     /**
      * Converts all tokens to lowercase.
-     *
-     * @return $this
      */
     public function toLowercase(bool $toLowercase = true): self
     {
