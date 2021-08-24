@@ -5,6 +5,7 @@ composer.lock
 coverage.xml
 .phpunit.result.cache
 .php_cs.cache
+.php-cs-fixer.cache
 .temp/coverage.php
 *.swp
 *.swo
