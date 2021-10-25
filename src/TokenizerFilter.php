@@ -78,7 +78,9 @@ final class TokenizerFilter
      */
     public const WHITESPACE_SEPARATOR = '\s';
 
-    public function __construct(public string $pattern, public string $replacement)
-    {
+    public function __construct(
+        public string $pattern,
+        public string $replacement,
+    ) {
     }
 }

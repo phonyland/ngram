@@ -31,7 +31,8 @@
         }
     },
     "scripts": {
-        "lint": "rector process src && php-cs-fixer fix -v",
+        "lint": "php-cs-fixer fix -v",
+        "process": "rector process src",
         "test:lint": "php-cs-fixer fix -v --dry-run",
         "test:process": "rector process src --dry-run",
         "test:types": "phpstan analyse --ansi --memory-limit=-1",
