@@ -12,10 +12,13 @@ final class Tokenizer
 
     /** @phpstan-var array<TokenizerFilter> $wordFilters */
     private array $wordFilters;
+
     /** @phpstan-var array<string> $wordSeparationPatterns */
     private array $wordSeparationPatterns;
+
     /** @phpstan-var array<string> $sentenceSeparationPatterns */
     public array $sentenceSeparationPatterns;
+
     /** @phpstan-var bool $toLowercase */
     private bool $toLowercase;
 
@@ -98,7 +101,7 @@ final class Tokenizer
     public function toArray(): array
     {
         return [
-            'word_filters'                 => array_map(fn (TokenizerFilter $tokenizerFilter) => $tokenizerFilter->toArray(), $this->wordFilters),
+            'word_filters'                 => array_map(fn (TokenizerFilter $tokenizerFilter): array => $tokenizerFilter->toArray(), $this->wordFilters),
             'word_separation_patterns'     => $this->wordSeparationPatterns,
             'sentence_separation_patterns' => $this->sentenceSeparationPatterns,
             'to_lowercase'                 => $this->toLowercase,
