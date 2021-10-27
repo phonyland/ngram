@@ -9,7 +9,7 @@ test('TokenizerFilter: Can be converted to an array', function (): void {
     $tokenizerFilter = new TokenizerFilter(TokenizerFilter::ALPHABETICAL, '');
 
     $expected = [
-        'pattern' => '/[^a-z]+/',
+        'pattern'     => '/[^a-z]+/',
         'replacement' => '',
     ];
 

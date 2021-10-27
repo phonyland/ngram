@@ -98,7 +98,7 @@ final class Tokenizer
     public function toArray(): array
     {
         return [
-            'word_filters'                 => array_map(fn(TokenizerFilter $tokenizerFilter) => $tokenizerFilter->toArray(), $this->wordFilters),
+            'word_filters'                 => array_map(fn (TokenizerFilter $tokenizerFilter) => $tokenizerFilter->toArray(), $this->wordFilters),
             'word_separation_patterns'     => $this->wordSeparationPatterns,
             'sentence_separation_patterns' => $this->sentenceSeparationPatterns,
             'to_lowercase'                 => $this->toLowercase,
