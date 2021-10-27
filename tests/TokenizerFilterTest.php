@@ -5,6 +5,17 @@ declare(strict_types=1);
 use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\TokenizerFilter;
 
+test('TokenizerFilter: Can be converted to an array', function (): void {
+    $tokenizerFilter = new TokenizerFilter(TokenizerFilter::ALPHABETICAL, '');
+
+    $expected = [
+        'pattern' => '/[^a-z]+/',
+        'replacement' => '',
+    ];
+
+    expect($tokenizerFilter->toArray())->toBe($expected);
+});
+
 test('TokenizerFilter::NONE', function (): void {
     $tokenizer = new Tokenizer();
     $tokenizer

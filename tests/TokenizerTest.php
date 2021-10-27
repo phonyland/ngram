@@ -101,3 +101,22 @@ it('Tokenizer: Can convert tokens to lowercase', function (): void {
 
     expect($tokenizer->tokenize($text))->toBe($expected);
 });
+
+test('Tokenizer: Can be converted to an array', function (): void {
+    $tokenizer = (new Tokenizer())
+        ->addWordFilterRule(TokenizerFilter::NO_SYMBOLS)
+        ->addSentenceSeparatorPattern('.')
+        ->addSentenceSeparatorPattern(' ')
+        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordSeparatorPattern(TokenizerFilter::NUMERICAL)
+        ->toLowercase();
+
+    $expected = [
+        'word_filters'                 => [['pattern' => '/[^ \p{L}]+/u', 'replacement' => '']],
+        'word_separation_patterns'     => ['\s', '/[^0-9]+/'],
+        'sentence_separation_patterns' => ['.', ' '],
+        'to_lowercase'                 => true,
+    ];
+
+    expect($tokenizer->toArray())->toMatchArray($expected);
+});
