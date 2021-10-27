@@ -83,4 +83,15 @@ final class TokenizerFilter
         public string $replacement,
     ) {
     }
+
+    /**
+     * @return array<0 => string, 0 => string>
+     */
+    public function toArray(): array
+    {
+        return [
+            $this->pattern,
+            $this->replacement,
+        ];
+    }
 }

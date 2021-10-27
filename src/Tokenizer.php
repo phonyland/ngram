@@ -92,6 +92,19 @@ final class Tokenizer
         return array_values(array_filter($tokensBySentences));
     }
 
+    /**
+     * @return array{word_filters: array<array{pattern:string, replacement: string}>, word_separation_patterns: string[], sentence_separation_patterns: string[], to_lowercase:bool}
+     */
+    public function toArray(): array
+    {
+        return [
+            'word_filters'                 => array_map(fn(TokenizerFilter $tokenizerFilter) => $tokenizerFilter->toArray(), $this->wordFilters),
+            'word_separation_patterns'     => $this->wordSeparationPatterns,
+            'sentence_separation_patterns' => $this->sentenceSeparationPatterns,
+            'to_lowercase'                 => $this->toLowercase,
+        ];
+    }
+
     // endregion
 
     // region Private Methods
@@ -125,6 +138,7 @@ final class Tokenizer
     }
 
     // endregion
+
     // region Fluent Config Setters
 
     /**
