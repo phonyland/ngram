@@ -69,15 +69,12 @@ final class NGramCount
     /**
      * Tracks the given element count on $elements array.
      *
-     * @phpstan-param   array<string, int>   $elements
-     *
-     * @phpstan-return  array<string, int>
+     * @param  mixed  $element
+     * @param  array<mixed, int>  $elements
      */
-    public static function elementOnArray(string $element, array &$elements): array
+    public static function elementOnArray(mixed $element, array &$elements): void
     {
         $elements[$element] ??= 0;
         $elements[$element]++;
-
-        return $elements;
     }
 }
