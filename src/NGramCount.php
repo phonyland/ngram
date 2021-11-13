@@ -69,8 +69,7 @@ final class NGramCount
     /**
      * Tracks the given element count on $elements array.
      *
-     * @param  mixed  $element
-     * @param  array<mixed, int>  $elements
+     * @param array<mixed, int> $elements
      */
     public static function elementOnArray(mixed $element, array &$elements): void
     {
