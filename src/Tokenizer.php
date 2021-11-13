@@ -74,7 +74,9 @@ final class Tokenizer
         /** @phpstan-var  array<string|null> $sentences */
         $sentences =  preg_split('/(?<=[' . $sentenceSeparationPattern . '])\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
 
-        return array_filter($sentences, fn (string|null $sentence): bool => !is_null($sentence) && $sentence !== '');
+        return array_filter($sentences, function (string|null $sentence): bool {
+            return !is_null($sentence) && $sentence !== '';
+        });
     }
 
     /**
