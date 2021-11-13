@@ -16,7 +16,7 @@ it('Tokenizer@tokenize: Seperates the text with the given separator', function (
     $result = $tokenizer->tokenize($text);
 
     // Assert
-    expect($result)->toMatchArray(['sample', 'text']);
+    expect($result)->toBe(['sample', 'text']);
 });
 
 it('Tokenizer@tokenize: Seperates the text with multiple separators', function (): void {
@@ -32,7 +32,7 @@ it('Tokenizer@tokenize: Seperates the text with multiple separators', function (
     $result = $tokenizer->tokenize($text);
 
     // Assert
-    expect($result)->toMatchArray(['sample', 'text', 'sample', 'text']);
+    expect($result)->toBe(['sample', 'text', 'sample', 'text']);
 });
 
 it('Tokenizer@tokenize: Seperates the text with regex patterns', function (): void {
@@ -46,7 +46,21 @@ it('Tokenizer@tokenize: Seperates the text with regex patterns', function (): vo
     $result = $tokenizer->tokenize($text);
 
     // Assert
-    expect($result)->toMatchArray(['sample', 'text', 'sample', 'text']);
+    expect($result)->toBe(['sample', 'text', 'sample', 'text']);
+});
+
+it('Tokenizer@tokenize: A minimum word length can be set', function (): void {
+    // Arrange
+    $tokenizer = new Tokenizer();
+    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
+
+    $text = 'A sample text with a some meaningless words';
+
+    // Act
+    $result = $tokenizer->tokenize($text, 6);
+
+    // Assert
+    expect($result)->toBe(['sample', 'meaningless']);
 });
 
 it('Tokenizer@sentences: Separates the text with the given punctuation into sentences', function (): void {
@@ -63,7 +77,7 @@ it('Tokenizer@sentences: Separates the text with the given punctuation into sent
     $result = $tokenizer->sentences($text);
 
     // Assert
-    expect($result)->toMatchArray([
+    expect($result)->toBe([
         'Sample Sentence.',
         'Sample Sentence!',
         'Sample Sentence?',
@@ -90,7 +104,7 @@ it('Tokenizer@tokenizeBySentences: Separates the text into tokens by sentences',
     $result = $tokenizer->tokenizeBySentences($text);
 
     // Assert
-    expect($result)->toMatchArray([
+    expect($result)->toBe([
         ['Sample', 'Sentence'],
         ['Sample', 'Sentence'],
         ['Sample', 'Sentence'],
@@ -108,12 +122,12 @@ it('Tokenizer@tokenize: Filters the tokens by given removal rule', function (): 
     // Act I
     $tokenizer->addWordFilterRule('/m/');
     // Assert I
-    expect($tokenizer->tokenize('sample text'))->toMatchArray(['saple', 'text']);
+    expect($tokenizer->tokenize('sample text'))->toBe(['saple', 'text']);
 
     // Act II
     $tokenizer->addWordFilterRule('/x/', 'q');
     // Assert II
-    expect($tokenizer->tokenize('sample text'))->toMatchArray(['saple', 'teqt']);
+    expect($tokenizer->tokenize('sample text'))->toBe(['saple', 'teqt']);
 });
 
 it('Tokenizer: Can convert tokens to lowercase', function (): void {
@@ -128,7 +142,7 @@ it('Tokenizer: Can convert tokens to lowercase', function (): void {
     $result = $tokenizer->tokenize($text);
 
     // Assert
-    expect($result)->toMatchArray(['sample', 'text']);
+    expect($result)->toBe(['sample', 'text']);
 });
 
 test('Tokenizer: Can be converted to an array', function (): void {
@@ -145,7 +159,7 @@ test('Tokenizer: Can be converted to an array', function (): void {
     $result = $tokenizer->toArray();
 
     // Assert
-    expect($result)->toMatchArray([
+    expect($result)->toBe([
         'word_filters'                 => [['pattern' => '/[^ \p{L}]+/u', 'replacement' => '']],
         'word_separation_patterns'     => ['\s', '/[^0-9]+/'],
         'sentence_separation_patterns' => ['.', ' '],

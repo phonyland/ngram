@@ -39,7 +39,7 @@ final class Tokenizer
      *
      * @phpstan-return array<string>
      */
-    public function tokenize(string $text): array
+    public function tokenize(string $text, ?int $minWordLength = null): array
     {
         if ($this->wordSeparationPatterns === []) {
             throw new RuntimeException('No word separation pattern given!');
@@ -55,7 +55,12 @@ final class Tokenizer
         /** @phpstan-var  array<string|null> $tokens */
         $tokens = preg_replace($this->getFilterPatterns(), $this->getFilterReplacements(), $tokens);
 
-        return array_filter($tokens, fn (string|null $token): bool => !is_null($token) && $token !== '');
+        return array_values(array_filter($tokens, function (string|null $token) use ($minWordLength): bool {
+            return
+                !is_null($token) &&
+                $token !== '' &&
+                mb_strlen($token) >= $minWordLength;
+        }));
     }
 
     /**
@@ -84,14 +89,14 @@ final class Tokenizer
      *
      * @phpstan-return array<array<string>>
      */
-    public function tokenizeBySentences(string $text): array
+    public function tokenizeBySentences(string $text, ?int $minWordLength = null): array
     {
         $sentences = $this->sentences($text);
 
         $tokensBySentences = [];
 
         foreach ($sentences as $sentence) {
-            $tokensBySentences[] = $this->tokenize($sentence);
+            $tokensBySentences[] = $this->tokenize($sentence, $minWordLength);
         }
 
         return array_values(array_filter($tokensBySentences));
