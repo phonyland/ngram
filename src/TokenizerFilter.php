@@ -9,42 +9,42 @@ final class TokenizerFilter
     /**
      * @var string
      */
-    public const NONE                          = '/\s+/';
+    public const NONE = '/\s+/';
 
     /**
      * @var string
      */
-    public const FRENCH                        = '/[^a-zéèëêúüûùœàáäâæíïìîóöôòç]+/';
+    public const FRENCH = '/[^a-zéèëêúüûùœàáäâæíïìîóöôòç]+/';
 
     /**
      * @var string
      */
-    public const ENGLISH                       = '/[^a-zæœ]+/';
+    public const ENGLISH = '/[^a-zæœ]+/';
 
     /**
      * @var string
      */
-    public const OLD_ENGLISH                   = '/[^a-zþðƿȝæœ]/';
+    public const OLD_ENGLISH = '/[^a-zþðƿȝæœ]/';
 
     /**
      * @var string
      */
-    public const ALPHABETICAL                  = '/[^a-z]+/';
+    public const ALPHABETICAL = '/[^a-z]+/';
 
     /**
      * @var string
      */
-    public const NUMERICAL                     = '/[^0-9]+/';
+    public const NUMERICAL = '/[^0-9]+/';
 
     /**
      * @var string
      */
-    public const ALPHANUMBERICAL               = '/[^0-9a-z]+/';
+    public const ALPHANUMBERICAL = '/[^0-9a-z]+/';
 
     /**
      * @var string
      */
-    public const LATIN_EXTENDED_ALPHABETICAL   = '/[^a-zéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß]+/';
+    public const LATIN_EXTENDED_ALPHABETICAL = '/[^a-zéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß]+/';
 
     /**
      * @var string
@@ -54,7 +54,7 @@ final class TokenizerFilter
     /**
      * @var string
      */
-    public const NO_SYMBOLS                    = "/[^ \p{L}]+/u";
+    public const NO_SYMBOLS = "/[^ \p{L}]+/u";
 
     /**
      * Japanese characters (actually includes all the chinese characters instead of only the jōyō kanji).

@@ -40,7 +40,7 @@ it('Tokenizer@tokenize: Seperates the text with regex patterns', function (): vo
     $tokenizer = new Tokenizer();
     $tokenizer->addWordSeparatorPattern('\s');
 
-    $text = 'sample     text ' . PHP_EOL . 'sample text';
+    $text = 'sample     text '.PHP_EOL.'sample text';
 
     // Act
     $result = $tokenizer->tokenize($text);

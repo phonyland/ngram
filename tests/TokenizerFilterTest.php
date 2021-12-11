@@ -22,7 +22,7 @@ test('TokenizerFilter::NONE', function (): void {
         ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
         ->addWordFilterRule(TokenizerFilter::NONE);
 
-    $text = <<<TEXT
+    $text = <<<'TEXT'
             this is a very
             long string that
             doesn't require

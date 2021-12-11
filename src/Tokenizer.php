@@ -28,10 +28,10 @@ final class Tokenizer
 
     public function __construct()
     {
-        $this->wordFilters                = [];
-        $this->wordSeparationPatterns     = [];
+        $this->wordFilters = [];
+        $this->wordSeparationPatterns = [];
         $this->sentenceSeparationPatterns = [];
-        $this->toLowercase                = false;
+        $this->toLowercase = false;
     }
 
     /**
@@ -47,7 +47,7 @@ final class Tokenizer
 
         $text = $this->toLowercase ? $this->toLowercaseTokens($text) : $text;
 
-        $wordSeparationPattern = '/[' . implode('', $this->wordSeparationPatterns) . ']/';
+        $wordSeparationPattern = '/['.implode('', $this->wordSeparationPatterns).']/';
 
         /** @phpstan-var  array<string> $tokens */
         $tokens = preg_split($wordSeparationPattern, $text, -1, PREG_SPLIT_NO_EMPTY);
@@ -57,7 +57,7 @@ final class Tokenizer
 
         return array_values(array_filter($tokens, function (string|null $token) use ($minWordLength): bool {
             return
-                !is_null($token) &&
+                ! is_null($token) &&
                 $token !== '' &&
                 mb_strlen($token) >= $minWordLength;
         }));
@@ -77,10 +77,10 @@ final class Tokenizer
         $sentenceSeparationPattern = implode('', $this->sentenceSeparationPatterns);
 
         /** @phpstan-var  array<string|null> $sentences */
-        $sentences =  preg_split('/(?<=[' . $sentenceSeparationPattern . '])\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
+        $sentences = preg_split('/(?<=['.$sentenceSeparationPattern.'])\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
 
         return array_filter($sentences, function (string|null $sentence): bool {
-            return !is_null($sentence) && $sentence !== '';
+            return ! is_null($sentence) && $sentence !== '';
         });
     }
 
