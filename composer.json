@@ -1,24 +1,23 @@
 {
     "name": "phonyland/ngram",
-    "type": "library",
     "description": "\ud83e\uddea N-Gram Tools for \ud83d\ude43 Phony Language Models with sanitizing, tokenization, n-gram extraction, frequency mapping",
-    "homepage": "http://phony.land",
     "license": "MIT",
+    "type": "library",
     "authors": [
         {
             "name": "Yunus Emre Delig\u00f6z",
             "email": "ye@deligoz.me"
         }
     ],
+    "homepage": "http://phony.land",
     "require": {
         "php": "^8.0"
     },
     "require-dev": {
         "phonyland/dev-tools": "dev-master"
     },
-    "config": {
-        "sort-packages": true
-    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Phonyland\\NGram\\": "src/"
@@ -29,8 +28,9 @@
             "Phonyland\\NGram\\Tests\\": "tests"
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
     "scripts": {
         "post-autoload-dump": [
             "@normalize",
