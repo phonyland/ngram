@@ -9,13 +9,15 @@ final class NGramSequence
     /**
      * Generates n-grams for given array of tokens and n-gram level.
      *
-     * @phpstan-param  array<string> $tokens
+     * @param  int            $n
+     * @param  array<string>  $tokens
+     * @param  bool           $isUnique
      *
-     * @phpstan-return array<string>
+     * @return array<string>
      */
     public static function multigram(int $n, array $tokens, bool $isUnique = false): array
     {
-        /** @phpstan-var array<string> $nGrams */
+        /** @var array<string> $nGrams */
         $nGrams = [];
 
         foreach ($tokens as $token) {
@@ -32,9 +34,10 @@ final class NGramSequence
     /**
      * Generates trigrams for given array of tokens.
      *
-     * @phpstan-param  array<string> $tokens
+     * @param  array<string>  $tokens
+     * @param  bool           $isUnique
      *
-     * @phpstan-return array<string>
+     * @return array<string>
      */
     public static function trigram(array $tokens, bool $isUnique = false): array
     {
@@ -44,9 +47,10 @@ final class NGramSequence
     /**
      * Generates bigrams for given array of tokens.
      *
-     * @phpstan-param  array<string> $tokens
+     * @param  array<string>  $tokens
+     * @param  bool           $isUnique
      *
-     * @phpstan-return array<string>
+     * @return array<string>
      */
     public static function bigram(array $tokens, bool $isUnique = false): array
     {
@@ -56,9 +60,10 @@ final class NGramSequence
     /**
      * Generates unigrams for given array of tokens.
      *
-     * @phpstan-param  array<string> $tokens
+     * @param  array<string>  $tokens
+     * @param  bool           $isUnique
      *
-     * @phpstan-return array<string>
+     * @return array<string>
      */
     public static function unigram(array $tokens, bool $isUnique = false): array
     {

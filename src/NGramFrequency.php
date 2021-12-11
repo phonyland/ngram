@@ -9,13 +9,14 @@ final class NGramFrequency
     /**
      * Generates n-grams with frequency for given array of tokens and n-gram level.
      *
-     * @phpstan-param  array<string> $tokens
+     * @param  int            $n
+     * @param  array<string>  $tokens
      *
-     * @phpstan-return array<string, float>
+     * @return array<string, float>
      */
     public static function multigram(int $n, array $tokens): array
     {
-        /** @phpstan-var array<string, int> $elementsWithCount */
+        /** @var array<string, int> $elementsWithCount */
         $elementsWithCount = NGramCount::multigram($n, $tokens);
 
         return self::frequencyFromCount($elementsWithCount);
@@ -24,9 +25,9 @@ final class NGramFrequency
     /**
      * Generates trigrams with frequency for given array of tokens and n-gram level.
      *
-     * @phpstan-param  array<string> $tokens
+     * @param  array<string> $tokens
      *
-     * @phpstan-return array<string, float>
+     * @return array<string, float>
      */
     public static function trigram(array $tokens): array
     {
@@ -36,9 +37,9 @@ final class NGramFrequency
     /**
      * Generates bigrams with frequency for given array of tokens and n-gram level.
      *
-     * @phpstan-param  array<string> $tokens
+     * @param  array<string> $tokens
      *
-     * @phpstan-return array<string, float>
+     * @return array<string, float>
      */
     public static function bigram(array $tokens): array
     {
@@ -48,9 +49,9 @@ final class NGramFrequency
     /**
      * Generates unigrams with frequency for given array of tokens and n-gram level.
      *
-     * @phpstan-param  array<string> $tokens
+     * @param  array<string> $tokens
      *
-     * @phpstan-return array<string, float>
+     * @return array<string, float>
      */
     public static function unigram(array $tokens): array
     {
@@ -60,13 +61,13 @@ final class NGramFrequency
     /**
      * Calculates the frequency from a n-gram count array.
      *
-     * @phpstan-param   array<string, int>   $countArray
+     * @param   array<string, int>   $countArray
      *
-     * @phpstan-return  array<string, float>
+     * @return  array<string, float>
      */
     public static function frequencyFromCount(array &$countArray): array
     {
-        $ngrams       = array_keys($countArray);
+        $ngrams = array_keys($countArray);
         $elementCount = count($countArray);
 
         $sumOfAllApperances = array_sum($countArray);

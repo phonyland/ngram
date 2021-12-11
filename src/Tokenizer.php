@@ -10,16 +10,16 @@ final class Tokenizer
 {
     // region Attributes
 
-    /** @phpstan-var array<TokenizerFilter> $wordFilters */
+    /** @var array<TokenizerFilter> */
     private array $wordFilters;
 
-    /** @phpstan-var array<string> $wordSeparationPatterns */
+    /** @var array<string> */
     private array $wordSeparationPatterns;
 
-    /** @phpstan-var array<string> $sentenceSeparationPatterns */
+    /** @var array<string> */
     public array $sentenceSeparationPatterns;
 
-    /** @phpstan-var bool $toLowercase */
+    /** @var bool */
     private bool $toLowercase;
 
     // endregion
@@ -37,7 +37,10 @@ final class Tokenizer
     /**
      * Applies the removal rules and returns tokenized array.
      *
-     * @phpstan-return array<string>
+     * @param  string    $text
+     * @param  int|null  $minWordLength
+     *
+     * @return array<string>
      */
     public function tokenize(string $text, ?int $minWordLength = null): array
     {
@@ -49,10 +52,10 @@ final class Tokenizer
 
         $wordSeparationPattern = '/['.implode('', $this->wordSeparationPatterns).']/';
 
-        /** @phpstan-var  array<string> $tokens */
+        /** @var array<string> $tokens */
         $tokens = preg_split($wordSeparationPattern, $text, -1, PREG_SPLIT_NO_EMPTY);
 
-        /** @phpstan-var  array<string|null> $tokens */
+        /** @var array<string|null> $tokens */
         $tokens = preg_replace($this->getFilterPatterns(), $this->getFilterReplacements(), $tokens);
 
         return array_values(array_filter($tokens, function (string|null $token) use ($minWordLength): bool {
@@ -66,7 +69,9 @@ final class Tokenizer
     /**
      * Applies the separation patterns and returns sentences.
      *
-     * @phpstan-return array<string>
+     * @param  string  $text
+     *
+     * @return array<string>
      */
     public function sentences(string $text): array
     {
@@ -76,7 +81,7 @@ final class Tokenizer
 
         $sentenceSeparationPattern = implode('', $this->sentenceSeparationPatterns);
 
-        /** @phpstan-var  array<string|null> $sentences */
+        /** @var array<string|null> $sentences */
         $sentences = preg_split('/(?<=['.$sentenceSeparationPattern.'])\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
 
         return array_filter($sentences, function (string|null $sentence): bool {
@@ -87,7 +92,10 @@ final class Tokenizer
     /**
      * Returns tokens by sentences in arrays.
      *
-     * @phpstan-return array<array<string>>
+     * @param  string    $text
+     * @param  int|null  $minWordLength
+     *
+     * @return array<array<string>>
      */
     public function tokenizeBySentences(string $text, ?int $minWordLength = null): array
     {
@@ -122,7 +130,7 @@ final class Tokenizer
     /**
      * Get applied filter patterns.
      *
-     * @phpstan-return array<string>
+     * @return array<string>
      */
     private function getFilterPatterns(): array
     {
@@ -132,7 +140,7 @@ final class Tokenizer
     /**
      * Get applied filter replacements.
      *
-     * @phpstan-return array<string>
+     * @return array<string>
      */
     private function getFilterReplacements(): array
     {
@@ -141,6 +149,10 @@ final class Tokenizer
 
     /**
      * Lowercases all tokens.
+     *
+     * @param  string  $text
+     *
+     * @return string
      */
     private function toLowercaseTokens(string $text): string
     {
@@ -153,6 +165,11 @@ final class Tokenizer
 
     /**
      * Adds a new removal rule.
+     *
+     * @param  string  $searchRegex
+     * @param  string  $replaceString
+     *
+     * @return $this
      */
     public function addWordFilterRule(string $searchRegex, string $replaceString = ''): self
     {
@@ -163,6 +180,10 @@ final class Tokenizer
 
     /**
      * Adds a separator pattern for the splitting the given text.
+     *
+     * @param  string  $wordSeparationPattern
+     *
+     * @return \Phonyland\NGram\Tokenizer
      */
     public function addWordSeparatorPattern(string $wordSeparationPattern): self
     {
@@ -174,7 +195,9 @@ final class Tokenizer
     /**
      * Adds a separator pattern for the splitting into sentences.
      *
-     * @phpstan-param string|array<string> $sentenceSeparationPattern
+     * @param  string|array<string>  $sentenceSeparationPattern
+     *
+     * @return \Phonyland\NGram\Tokenizer
      */
     public function addSentenceSeparatorPattern($sentenceSeparationPattern): self
     {
@@ -192,6 +215,10 @@ final class Tokenizer
 
     /**
      * Converts all tokens to lowercase.
+     *
+     * @param  bool  $toLowercase
+     *
+     * @return \Phonyland\NGram\Tokenizer
      */
     public function toLowercase(bool $toLowercase = true): self
     {

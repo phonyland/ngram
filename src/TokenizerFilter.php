@@ -6,54 +6,34 @@ namespace Phonyland\NGram;
 
 final class TokenizerFilter
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     public const NONE = '/\s+/';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public const FRENCH = '/[^a-zéèëêúüûùœàáäâæíïìîóöôòç]+/';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public const ENGLISH = '/[^a-zæœ]+/';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public const OLD_ENGLISH = '/[^a-zþðƿȝæœ]/';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public const ALPHABETICAL = '/[^a-z]+/';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public const NUMERICAL = '/[^0-9]+/';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public const ALPHANUMBERICAL = '/[^0-9a-z]+/';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public const LATIN_EXTENDED_ALPHABETICAL = '/[^a-zéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß]+/';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public const LATIN_EXTENDED_ALPHANUMERICAL = '/[^0-9a-zéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß]+/';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public const NO_SYMBOLS = "/[^ \p{L}]+/u";
 
     /**
@@ -84,9 +64,7 @@ final class TokenizerFilter
      */
     public const CHINESE = "/[^ \u{2E80}-\u{2FD5}\u{3400}-\u{4DBF}\u{4E00}-\u{9FFF}\u{F900}-\u{FAFF}]+/";
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public const WHITESPACE_SEPARATOR = '\s';
 
     public function __construct(

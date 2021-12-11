@@ -9,9 +9,10 @@ final class NGramCount
     /**
      * Generates n-grams with count for given array of tokens and n-gram level.
      *
-     * @phpstan-param  array<string> $tokens
+     * @param  int            $n
+     * @param  array<string>  $tokens
      *
-     * @phpstan-return array<string, int>
+     * @return array<string, int>
      */
     public static function multigram(int $n, array $tokens): array
     {
@@ -33,9 +34,9 @@ final class NGramCount
     /**
      * Generates trigrams with count for given array of tokens.
      *
-     * @phpstan-param  array<string> $tokens
+     * @param  array<string> $tokens
      *
-     * @phpstan-return array<string, int>
+     * @return array<string, int>
      */
     public static function trigram(array $tokens): array
     {
@@ -45,9 +46,9 @@ final class NGramCount
     /**
      * Generates bigrams with count for given array of tokens.
      *
-     * @phpstan-param  array<string> $tokens
+     * @param  array<string> $tokens
      *
-     * @phpstan-return array<string, int>
+     * @return array<string, int>
      */
     public static function bigram(array $tokens): array
     {
@@ -57,9 +58,9 @@ final class NGramCount
     /**
      * Generates unigrams with count for given array of tokens.
      *
-     * @phpstan-param  array<string> $tokens
+     * @param  array<string> $tokens
      *
-     * @phpstan-return array<string, int>
+     * @return array<string, int>
      */
     public static function unigram(array $tokens): array
     {
@@ -69,9 +70,10 @@ final class NGramCount
     /**
      * Tracks the given element count on $elements array.
      *
-     * @param array<mixed, int> $elements
+     * @param  int|string              $element
+     * @param  array<int|string, int>  $elements
      */
-    public static function elementOnArray(mixed $element, array &$elements): void
+    public static function elementOnArray(int|string $element, array &$elements): void
     {
         $elements[$element] ??= 0;
         $elements[$element]++;
