@@ -50,7 +50,7 @@ final class Tokenizer
 
         $text = $this->toLowercase ? $this->toLowercaseTokens($text) : $text;
 
-        $wordSeparationPattern = '/['.implode('', $this->wordSeparationPatterns).']/';
+        $wordSeparationPattern = '/[' . implode('', $this->wordSeparationPatterns) . ']/';
 
         /** @var array<string> $tokens */
         $tokens = preg_split($wordSeparationPattern, $text, -1, PREG_SPLIT_NO_EMPTY);
@@ -82,7 +82,7 @@ final class Tokenizer
         $sentenceSeparationPattern = implode('', $this->sentenceSeparationPatterns);
 
         /** @var array<string|null> $sentences */
-        $sentences = preg_split('/(?<=['.$sentenceSeparationPattern.'])\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
+        $sentences = preg_split('/(?<=[' . $sentenceSeparationPattern . '])\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
 
         return array_filter($sentences, function (string|null $sentence): bool {
             return ! is_null($sentence) && $sentence !== '';
