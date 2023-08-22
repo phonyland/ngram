@@ -23,7 +23,7 @@ class NGramCount
             for ($i = 0; $i < $ngramCount; $i++) {
                 $ngram = mb_substr($token, $i, $n);
 
-                self::incrementElementCount($ngram, $nGrams);
+                self::incrementElementCount(element: $ngram, elementCounts: $nGrams);
             }
         }
 
