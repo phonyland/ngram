@@ -10,6 +10,7 @@ class NGramCount
      * Generates n-grams with count for given array of tokens and n-gram level.
      *
      * @param  array<string>  $tokens
+     *
      * @return array<string, int>
      */
     public static function multigram(int $n, array $tokens): array
@@ -33,6 +34,7 @@ class NGramCount
      * Generates trigrams with count for given array of tokens.
      *
      * @param  array<string>  $tokens
+     *
      * @return array<string, int>
      */
     public static function trigram(array $tokens): array
@@ -44,6 +46,7 @@ class NGramCount
      * Generates bigrams with count for given array of tokens.
      *
      * @param  array<string>  $tokens
+     *
      * @return array<string, int>
      */
     public static function bigram(array $tokens): array
@@ -55,6 +58,7 @@ class NGramCount
      * Generates unigrams with count for given array of tokens.
      *
      * @param  array<string>  $tokens
+     *
      * @return array<string, int>
      */
     public static function unigram(array $tokens): array

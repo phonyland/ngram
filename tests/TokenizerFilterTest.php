@@ -10,7 +10,7 @@ test('TokenizerFilter: Can be converted to an array', function (): void {
     $tokenizerFilter = new TokenizerFilter(TokenizerFilterType::ALPHABETICAL, '');
 
     $expected = [
-        'pattern' => '/[^a-z]+/',
+        'pattern'     => '/[^a-z]+/',
         'replacement' => '',
     ];
 
@@ -59,7 +59,7 @@ test('TokenizerFilterType::FRENCH', function (): void {
         ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
         ->addWordFilterRule(TokenizerFilterType::FRENCH);
 
-    $text = 'éèëêúüûùœàáäâæíïìîóöôòç#';
+    $text     = 'éèëêúüûùœàáäâæíïìîóöôòç#';
     $expected = 'éèëêúüûùœàáäâæíïìîóöôòç';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
@@ -71,7 +71,7 @@ test('TokenizerFilterType::ENGLISH', function (): void {
         ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
         ->addWordFilterRule(TokenizerFilterType::ENGLISH);
 
-    $text = 'a-zæœ#';
+    $text     = 'a-zæœ#';
     $expected = 'azæœ';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
@@ -83,7 +83,7 @@ test('TokenizerFilterType::OLD_ENGLISH', function (): void {
         ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
         ->addWordFilterRule(TokenizerFilterType::OLD_ENGLISH);
 
-    $text = 'a-zþðƿȝæœ#';
+    $text     = 'a-zþðƿȝæœ#';
     $expected = 'azþðƿȝæœ';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
@@ -95,7 +95,7 @@ test('TokenizerFilterType::ALPHABETICAL', function (): void {
         ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
         ->addWordFilterRule(TokenizerFilterType::ALPHABETICAL);
 
-    $text = 'a-z#';
+    $text     = 'a-z#';
     $expected = 'az';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
@@ -107,7 +107,7 @@ test('TokenizerFilterType::NUMERICAL', function (): void {
         ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
         ->addWordFilterRule(TokenizerFilterType::NUMERICAL);
 
-    $text = 'a-z#123';
+    $text     = 'a-z#123';
     $expected = '123';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
@@ -119,7 +119,7 @@ test('TokenizerFilterType::ALPHANUMBERICAL', function (): void {
         ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
         ->addWordFilterRule(TokenizerFilterType::ALPHANUMBERICAL);
 
-    $text = 'a-z#123';
+    $text     = 'a-z#123';
     $expected = 'az123';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
@@ -131,7 +131,7 @@ test('TokenizerFilterType::LATIN_EXTENDED_ALPHABETICAL', function (): void {
         ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
         ->addWordFilterRule(TokenizerFilterType::LATIN_EXTENDED_ALPHABETICAL);
 
-    $text = 'a-zéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß#';
+    $text     = 'a-zéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß#';
     $expected = 'azéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
@@ -143,7 +143,7 @@ test('TokenizerFilterType::LATIN_EXTENDED_ALPHANUMERICAL', function (): void {
         ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
         ->addWordFilterRule(TokenizerFilterType::LATIN_EXTENDED_ALPHANUMERICAL);
 
-    $text = '0-93a-zéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß#';
+    $text     = '0-93a-zéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß#';
     $expected = '093azéèëêęėēúüûùūçàáäâæãåāíïìîįīóöôòõœøōñńß';
 
     expect($tokenizer->tokenize($text))->toBe([$expected]);
@@ -155,7 +155,7 @@ test('TokenizerFilterType::NO_SYMBOLS', function (): void {
         ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
         ->addWordFilterRule(TokenizerFilterType::NO_SYMBOLS);
 
-    $text = 'abc#%^ abc#%^';
+    $text     = 'abc#%^ abc#%^';
     $expected = ['abc', 'abc'];
 
     expect($tokenizer->tokenize($text))->toBe($expected);
@@ -167,7 +167,7 @@ test('TokenizerFilterType::JAPANESE', function (): void {
         ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
         ->addWordFilterRule(TokenizerFilterType::JAPANESE);
 
-    $text = '科カ苛 abc';
+    $text     = '科カ苛 abc';
     $expected = ['科カ苛'];
 
     expect($tokenizer->tokenize($text))->toBe($expected);
@@ -179,7 +179,7 @@ test('TokenizerFilterType::CHINESE', function (): void {
         ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
         ->addWordFilterRule(TokenizerFilterType::CHINESE);
 
-    $text = '文本 abc';
+    $text     = '文本 abc';
     $expected = ['文本'];
 
     expect($tokenizer->tokenize($text))->toBe($expected);

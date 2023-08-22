@@ -17,6 +17,9 @@ jobs:
 
       - name: Fix PHP code style issues
         uses: aglipanci/laravel-pint-action@2.3.0
+        with:
+          preset: laravel
+          configPath: "vendor/phonyland/dev-tools/src/pint.json"
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4

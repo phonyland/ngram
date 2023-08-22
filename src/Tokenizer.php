@@ -27,10 +27,10 @@ class Tokenizer
 
     public function __construct()
     {
-        $this->wordFilters = [];
-        $this->wordSeparationPatterns = [];
+        $this->wordFilters                = [];
+        $this->wordSeparationPatterns     = [];
         $this->sentenceSeparationPatterns = [];
-        $this->toLowercase = false;
+        $this->toLowercase                = false;
     }
 
     /**
@@ -57,7 +57,7 @@ class Tokenizer
 
         return array_values(array_filter($tokens, function (?string $token) use ($minWordLength): bool {
             return
-                ! is_null($token) &&
+                !is_null($token) &&
                 $token !== '' &&
                 mb_strlen($token) >= $minWordLength;
         }));
@@ -81,7 +81,7 @@ class Tokenizer
         $sentences = preg_split('/(?<=['.$sentenceSeparationPattern.'])\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
 
         return array_filter($sentences, function (?string $sentence): bool {
-            return ! is_null($sentence) && $sentence !== '';
+            return !is_null($sentence) && $sentence !== '';
         });
     }
 
@@ -110,10 +110,10 @@ class Tokenizer
     public function toArray(): array
     {
         return [
-            'word_filters' => array_map(fn (TokenizerFilter $tokenizerFilter): array => $tokenizerFilter->toArray(), $this->wordFilters),
-            'word_separation_patterns' => $this->wordSeparationPatterns,
+            'word_filters'                 => array_map(fn (TokenizerFilter $tokenizerFilter): array => $tokenizerFilter->toArray(), $this->wordFilters),
+            'word_separation_patterns'     => $this->wordSeparationPatterns,
             'sentence_separation_patterns' => $this->sentenceSeparationPatterns,
-            'to_lowercase' => $this->toLowercase,
+            'to_lowercase'                 => $this->toLowercase,
         ];
     }
 
@@ -191,6 +191,7 @@ class Tokenizer
      * Adds a separator pattern for the splitting into sentences.
      *
      * @param  string|array<string>  $sentenceSeparationPattern
+     *
      * @return \Phonyland\NGram\Tokenizer
      */
     public function addSentenceSeparatorPattern(string|array $sentenceSeparationPattern): self
