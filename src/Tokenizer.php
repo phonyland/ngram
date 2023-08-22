@@ -11,15 +11,15 @@ class Tokenizer
     // region Attributes
 
     /** @var array<TokenizerFilter> */
-    private array $wordFilters;
+    protected array $wordFilters;
 
     /** @var array<string> */
-    private array $wordSeparationPatterns;
+    protected array $wordSeparationPatterns;
 
     /** @var array<string> */
     public array $sentenceSeparationPatterns;
 
-    private bool $toLowercase;
+    protected bool $toLowercase;
 
     // endregion
 
@@ -126,7 +126,7 @@ class Tokenizer
      *
      * @return array<string>
      */
-    private function getFilterPatterns(): array
+    protected function getFilterPatterns(): array
     {
         return array_map(fn (TokenizerFilter $filter): string => $filter->pattern, $this->wordFilters);
     }
@@ -136,7 +136,7 @@ class Tokenizer
      *
      * @return array<string>
      */
-    private function getFilterReplacements(): array
+    protected function getFilterReplacements(): array
     {
         return array_map(fn (TokenizerFilter $filter): string => $filter->replacement, $this->wordFilters);
     }
@@ -144,7 +144,7 @@ class Tokenizer
     /**
      * Lowercases all tokens.
      */
-    private function toLowercaseTokens(string $text): string
+    protected function toLowercaseTokens(string $text): string
     {
         return mb_convert_case($text, MB_CASE_LOWER, 'UTF-8');
     }
@@ -174,7 +174,9 @@ class Tokenizer
      * Adds a separator pattern for the splitting the given text.
      *
      *
-     * @return \Phonyland\NGram\Tokenizer
+     * @param  string|\Phonyland\NGram\TokenizerFilterType  $wordSeparationPattern
+     *
+     * @return  \Phonyland\NGram\Tokenizer
      */
     public function addWordSeparatorPattern(string|TokenizerFilterType $wordSeparationPattern): self
     {
