@@ -10,6 +10,7 @@ class NGramSequence
      * Generates n-grams for given array of tokens and n-gram level.
      *
      * @param  array<string>  $tokens
+     *
      * @return array<string>
      */
     public static function multigram(int $n, array $tokens, bool $isUnique = false): array
@@ -32,6 +33,7 @@ class NGramSequence
      * Generates trigrams for given array of tokens.
      *
      * @param  array<string>  $tokens
+     *
      * @return array<string>
      */
     public static function trigram(array $tokens, bool $isUnique = false): array
@@ -43,6 +45,7 @@ class NGramSequence
      * Generates bigrams for given array of tokens.
      *
      * @param  array<string>  $tokens
+     *
      * @return array<string>
      */
     public static function bigram(array $tokens, bool $isUnique = false): array
@@ -54,6 +57,7 @@ class NGramSequence
      * Generates unigrams for given array of tokens.
      *
      * @param  array<string>  $tokens
+     *
      * @return array<string>
      */
     public static function unigram(array $tokens, bool $isUnique = false): array
