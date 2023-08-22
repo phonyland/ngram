@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phonyland\NGram;
 
-final class NGramFrequency
+class NGramFrequency
 {
     /**
      * Generates n-grams with frequency for given array of tokens and n-gram level.

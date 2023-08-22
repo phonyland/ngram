@@ -6,7 +6,7 @@ namespace Phonyland\NGram;
 
 use RuntimeException;
 
-final class Tokenizer
+class Tokenizer
 {
     // region Attributes
 

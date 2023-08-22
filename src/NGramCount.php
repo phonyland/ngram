@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phonyland\NGram;
 
-final class NGramCount
+class NGramCount
 {
     /**
      * Generates n-grams with count for given array of tokens and n-gram level.

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phonyland\NGram;
 
-final class NGramSequence
+class NGramSequence
 {
     /**
      * Generates n-grams for given array of tokens and n-gram level.
