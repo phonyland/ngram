@@ -44,7 +44,7 @@ $tokenizer = new Tokenizer();
 $tokenizer
   ->addWordSeparatorPattern(';')
   ->addWordSeparatorPattern('\s')
-  ->addWordFilterRule(TokenizerFilter::NO_SYMBOLS);
+  ->addWordFilterRule(TokenizerFilterType::NO_SYMBOLS);
 
 $text = 'sample   text;sample;text';
 
@@ -127,8 +127,8 @@ $tokenizer
   ->addSentenceSeparatorPattern('.')
   ->addSentenceSeparatorPattern('!')
   ->addSentenceSeparatorPattern('?')
-  ->addWordFilterRule(TokenizerFilter::NO_SYMBOLS)
-  ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
+  ->addWordFilterRule(TokenizerFilterType::NO_SYMBOLS)
+  ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR);
 
 $text = 'Sample Sentence. Sample Sentence! Sample Sentence? Sample Sentence no. 4?! Sample sample sentence... End';
 
@@ -173,7 +173,7 @@ use Phonyland\NGram\NGramSequence;
 use Phonyland\NGram\TokenizerFilter;
 
 $tokenizer = new Tokenizer();
-$tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
+$tokenizer->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR);
 $tokens = $tokenizer->tokenize('sample text');
 
 NGramSequence::multigram(4, $tokens);
@@ -205,7 +205,7 @@ use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\NGramCount;
 
 $tokenizer = new Tokenizer();
-$tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
+$tokenizer->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR);
 $tokens = $tokenizer->tokenize('sample text');
 
 NGramCount::multigram(4, $tokens);
@@ -239,8 +239,8 @@ use Phonyland\NGram\NGramFrequency;
 use Phonyland\NGram\TokenizerFilter;
 
 $tokenizer = new Tokenizer();
-$tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
-$tokenizer->addWordFilterRule(TokenizerFilter::ALPHABETICAL);
+$tokenizer->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR);
+$tokenizer->addWordFilterRule(TokenizerFilterType::ALPHABETICAL);
 $tokens = $tokenizer->tokenize('bombadil! bombadillo!');
 
 NGramFrequency::multigram(4, $tokens);

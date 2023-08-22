@@ -159,8 +159,12 @@ final class Tokenizer
      *
      * @return $this
      */
-    public function addWordFilterRule(string $searchRegex, string $replaceString = ''): self
+    public function addWordFilterRule(string|TokenizerFilterType $searchRegex, string $replaceString = ''): self
     {
+        $searchRegex = $searchRegex instanceof TokenizerFilterType
+            ? $searchRegex->value
+            : $searchRegex;
+
         $this->wordFilters[] = new TokenizerFilter($searchRegex, $replaceString);
 
         return $this;
@@ -172,8 +176,12 @@ final class Tokenizer
      *
      * @return \Phonyland\NGram\Tokenizer
      */
-    public function addWordSeparatorPattern(string $wordSeparationPattern): self
+    public function addWordSeparatorPattern(string|TokenizerFilterType $wordSeparationPattern): self
     {
+        $wordSeparationPattern = $wordSeparationPattern instanceof TokenizerFilterType
+            ? $wordSeparationPattern->value
+            : $wordSeparationPattern;
+
         $this->wordSeparationPatterns[] = $wordSeparationPattern;
 
         return $this;
@@ -186,7 +194,7 @@ final class Tokenizer
      *
      * @return \Phonyland\NGram\Tokenizer
      */
-    public function addSentenceSeparatorPattern($sentenceSeparationPattern): self
+    public function addSentenceSeparatorPattern(string|array $sentenceSeparationPattern): self
     {
         if (is_array($sentenceSeparationPattern)) {
             $this->sentenceSeparationPatterns = array_merge(

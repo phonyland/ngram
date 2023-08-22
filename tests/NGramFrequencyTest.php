@@ -5,12 +5,13 @@ declare(strict_types=1);
 use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\NGramFrequency;
 use Phonyland\NGram\TokenizerFilter;
+use Phonyland\NGram\TokenizerFilterType;
 
 test('N-Gram Frequency: Multigram', function (): void {
     $tokenizer = new Tokenizer();
     $tokenizer
-        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
-        ->addWordFilterRule(TokenizerFilter::ALPHABETICAL);
+        ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilterType::ALPHABETICAL);
     $tokens = $tokenizer->tokenize('bombadil! bombadillo!');
 
     $unigrams = NGramFrequency::multigram(4, $tokens);
@@ -31,8 +32,8 @@ test('N-Gram Frequency: Multigram', function (): void {
 test('N-Gram Frequency: Trigram', function (): void {
     $tokenizer = new Tokenizer();
     $tokenizer
-        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
-        ->addWordFilterRule(TokenizerFilter::ALPHABETICAL);
+        ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilterType::ALPHABETICAL);
     $tokens = $tokenizer->tokenize('bombadil! bombadillo!');
 
     $unigrams = NGramFrequency::trigram($tokens);
@@ -54,8 +55,8 @@ test('N-Gram Frequency: Trigram', function (): void {
 test('N-Gram Frequency: Bigram', function (): void {
     $tokenizer = new Tokenizer();
     $tokenizer
-        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
-        ->addWordFilterRule(TokenizerFilter::ALPHABETICAL);
+        ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilterType::ALPHABETICAL);
     $tokens = $tokenizer->tokenize('bombadil! bombadillo!');
 
     $unigrams = NGramFrequency::bigram($tokens);
@@ -78,8 +79,8 @@ test('N-Gram Frequency: Bigram', function (): void {
 test('N-Gram Frequency: Unigram', function (): void {
     $tokenizer = new Tokenizer();
     $tokenizer
-        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
-        ->addWordFilterRule(TokenizerFilter::ALPHABETICAL);
+        ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
+        ->addWordFilterRule(TokenizerFilterType::ALPHABETICAL);
     $tokens = $tokenizer->tokenize('bombadil! bombadillo!');
 
     $unigrams = NGramFrequency::unigram($tokens);

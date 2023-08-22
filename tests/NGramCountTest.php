@@ -5,10 +5,11 @@ declare(strict_types=1);
 use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\NGramCount;
 use Phonyland\NGram\TokenizerFilter;
+use Phonyland\NGram\TokenizerFilterType;
 
 test('N-Gram Count: Multigram', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
+    $tokenizer->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR);
     $tokens = $tokenizer->tokenize('sample text');
 
     $unigrams = NGramCount::multigram(4, $tokens);
@@ -24,7 +25,7 @@ test('N-Gram Count: Multigram', function (): void {
 
 test('N-Gram Count: Trigram', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
+    $tokenizer->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR);
     $tokens = $tokenizer->tokenize('sample text');
 
     $unigrams = NGramCount::trigram($tokens);
@@ -42,7 +43,7 @@ test('N-Gram Count: Trigram', function (): void {
 
 test('N-Gram Count: Bigram', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
+    $tokenizer->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR);
     $tokens = $tokenizer->tokenize('sample text');
 
     $unigrams = NGramCount::bigram($tokens);
@@ -62,7 +63,7 @@ test('N-Gram Count: Bigram', function (): void {
 
 test('N-Gram Count: Unigram', function (): void {
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
+    $tokenizer->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR);
     $tokens = $tokenizer->tokenize('sample text');
 
     $unigrams = NGramCount::unigram($tokens);

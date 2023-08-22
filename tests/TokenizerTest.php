@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\TokenizerFilter;
+use Phonyland\NGram\TokenizerFilterType;
 
 it('Tokenizer@tokenize: Seperates the text with the given separator', function (): void {
     // Arrange
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
+    $tokenizer->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR);
 
     $text = 'sample text';
 
@@ -52,7 +53,7 @@ it('Tokenizer@tokenize: Seperates the text with regex patterns', function (): vo
 it('Tokenizer@tokenize: A minimum word length can be set', function (): void {
     // Arrange
     $tokenizer = new Tokenizer();
-    $tokenizer->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
+    $tokenizer->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR);
 
     $text = 'A sample text with a some meaningless words';
 
@@ -95,8 +96,8 @@ it('Tokenizer@tokenizeBySentences: Separates the text into tokens by sentences',
         ->addSentenceSeparatorPattern('.')
         ->addSentenceSeparatorPattern('!')
         ->addSentenceSeparatorPattern('?')
-        ->addWordFilterRule(TokenizerFilter::NO_SYMBOLS)
-        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
+        ->addWordFilterRule(TokenizerFilterType::NO_SYMBOLS)
+        ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR);
 
     $text = 'Sample Sentence. Sample Sentence! Sample Sentence? Sample Sentence no. 4?! Sample sample sentence... End';
 
@@ -117,7 +118,7 @@ it('Tokenizer@tokenizeBySentences: Separates the text into tokens by sentences',
 it('Tokenizer@tokenize: Filters the tokens by given removal rule', function (): void {
     // Arrange
     $tokenizer = (new Tokenizer())
-        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR);
+        ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR);
 
     // Act I
     $tokenizer->addWordFilterRule('/m/');
@@ -133,7 +134,7 @@ it('Tokenizer@tokenize: Filters the tokens by given removal rule', function (): 
 it('Tokenizer: Can convert tokens to lowercase', function (): void {
     // Arrange
     $tokenizer = (new Tokenizer())
-        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
+        ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
         ->toLowercase();
 
     $text = 'Sample TeXt';
@@ -148,11 +149,11 @@ it('Tokenizer: Can convert tokens to lowercase', function (): void {
 test('Tokenizer: Can be converted to an array', function (): void {
     // Arrange
     $tokenizer = (new Tokenizer())
-        ->addWordFilterRule(TokenizerFilter::NO_SYMBOLS)
+        ->addWordFilterRule(TokenizerFilterType::NO_SYMBOLS)
         ->addSentenceSeparatorPattern('.')
         ->addSentenceSeparatorPattern(' ')
-        ->addWordSeparatorPattern(TokenizerFilter::WHITESPACE_SEPARATOR)
-        ->addWordSeparatorPattern(TokenizerFilter::NUMERICAL)
+        ->addWordSeparatorPattern(TokenizerFilterType::WHITESPACE_SEPARATOR)
+        ->addWordSeparatorPattern(TokenizerFilterType::NUMERICAL)
         ->toLowercase();
 
     // Act
