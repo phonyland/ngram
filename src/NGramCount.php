@@ -9,7 +9,6 @@ final class NGramCount
     /**
      * Generates n-grams with count for given array of tokens and n-gram level.
      *
-     * @param  int            $n
      * @param  array<string>  $tokens
      *
      * @return array<string, int>
@@ -34,7 +33,7 @@ final class NGramCount
     /**
      * Generates trigrams with count for given array of tokens.
      *
-     * @param  array<string> $tokens
+     * @param  array<string>  $tokens
      *
      * @return array<string, int>
      */
@@ -46,7 +45,7 @@ final class NGramCount
     /**
      * Generates bigrams with count for given array of tokens.
      *
-     * @param  array<string> $tokens
+     * @param  array<string>  $tokens
      *
      * @return array<string, int>
      */
@@ -58,7 +57,7 @@ final class NGramCount
     /**
      * Generates unigrams with count for given array of tokens.
      *
-     * @param  array<string> $tokens
+     * @param  array<string>  $tokens
      *
      * @return array<string, int>
      */
@@ -70,7 +69,6 @@ final class NGramCount
     /**
      * Tracks the given element count on $elements array.
      *
-     * @param  int|string              $element
      * @param  array<int|string, int>  $elements
      */
     public static function elementOnArray(int|string $element, array &$elements): void

@@ -9,9 +9,7 @@ final class NGramSequence
     /**
      * Generates n-grams for given array of tokens and n-gram level.
      *
-     * @param  int            $n
      * @param  array<string>  $tokens
-     * @param  bool           $isUnique
      *
      * @return array<string>
      */
@@ -35,7 +33,6 @@ final class NGramSequence
      * Generates trigrams for given array of tokens.
      *
      * @param  array<string>  $tokens
-     * @param  bool           $isUnique
      *
      * @return array<string>
      */
@@ -48,7 +45,6 @@ final class NGramSequence
      * Generates bigrams for given array of tokens.
      *
      * @param  array<string>  $tokens
-     * @param  bool           $isUnique
      *
      * @return array<string>
      */
@@ -61,7 +57,6 @@ final class NGramSequence
      * Generates unigrams for given array of tokens.
      *
      * @param  array<string>  $tokens
-     * @param  bool           $isUnique
      *
      * @return array<string>
      */

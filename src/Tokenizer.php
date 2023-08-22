@@ -19,7 +19,6 @@ final class Tokenizer
     /** @var array<string> */
     public array $sentenceSeparationPatterns;
 
-    /** @var bool */
     private bool $toLowercase;
 
     // endregion
@@ -28,21 +27,19 @@ final class Tokenizer
 
     public function __construct()
     {
-        $this->wordFilters = [];
-        $this->wordSeparationPatterns = [];
+        $this->wordFilters                = [];
+        $this->wordSeparationPatterns     = [];
         $this->sentenceSeparationPatterns = [];
-        $this->toLowercase = false;
+        $this->toLowercase                = false;
     }
 
     /**
      * Applies the removal rules and returns tokenized array.
      *
-     * @param  string    $text
-     * @param  int|null  $minWordLength
      *
      * @return array<string>
      */
-    public function tokenize(string $text, ?int $minWordLength = null): array
+    public function tokenize(string $text, int $minWordLength = null): array
     {
         if ($this->wordSeparationPatterns === []) {
             throw new RuntimeException('No word separation pattern given!');
@@ -50,7 +47,7 @@ final class Tokenizer
 
         $text = $this->toLowercase ? $this->toLowercaseTokens($text) : $text;
 
-        $wordSeparationPattern = '/[' . implode('', $this->wordSeparationPatterns) . ']/';
+        $wordSeparationPattern = '/['.implode('', $this->wordSeparationPatterns).']/';
 
         /** @var array<string> $tokens */
         $tokens = preg_split($wordSeparationPattern, $text, -1, PREG_SPLIT_NO_EMPTY);
@@ -58,9 +55,9 @@ final class Tokenizer
         /** @var array<string|null> $tokens */
         $tokens = preg_replace($this->getFilterPatterns(), $this->getFilterReplacements(), $tokens);
 
-        return array_values(array_filter($tokens, function (string|null $token) use ($minWordLength): bool {
+        return array_values(array_filter($tokens, function (?string $token) use ($minWordLength): bool {
             return
-                ! is_null($token) &&
+                !is_null($token) &&
                 $token !== '' &&
                 mb_strlen($token) >= $minWordLength;
         }));
@@ -69,7 +66,6 @@ final class Tokenizer
     /**
      * Applies the separation patterns and returns sentences.
      *
-     * @param  string  $text
      *
      * @return array<string>
      */
@@ -82,22 +78,20 @@ final class Tokenizer
         $sentenceSeparationPattern = implode('', $this->sentenceSeparationPatterns);
 
         /** @var array<string|null> $sentences */
-        $sentences = preg_split('/(?<=[' . $sentenceSeparationPattern . '])\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
+        $sentences = preg_split('/(?<=['.$sentenceSeparationPattern.'])\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
 
-        return array_filter($sentences, function (string|null $sentence): bool {
-            return ! is_null($sentence) && $sentence !== '';
+        return array_filter($sentences, function (?string $sentence): bool {
+            return !is_null($sentence) && $sentence !== '';
         });
     }
 
     /**
      * Returns tokens by sentences in arrays.
      *
-     * @param  string    $text
-     * @param  int|null  $minWordLength
      *
      * @return array<array<string>>
      */
-    public function tokenizeBySentences(string $text, ?int $minWordLength = null): array
+    public function tokenizeBySentences(string $text, int $minWordLength = null): array
     {
         $sentences = $this->sentences($text);
 
@@ -149,10 +143,6 @@ final class Tokenizer
 
     /**
      * Lowercases all tokens.
-     *
-     * @param  string  $text
-     *
-     * @return string
      */
     private function toLowercaseTokens(string $text): string
     {
@@ -166,8 +156,6 @@ final class Tokenizer
     /**
      * Adds a new removal rule.
      *
-     * @param  string  $searchRegex
-     * @param  string  $replaceString
      *
      * @return $this
      */
@@ -181,7 +169,6 @@ final class Tokenizer
     /**
      * Adds a separator pattern for the splitting the given text.
      *
-     * @param  string  $wordSeparationPattern
      *
      * @return \Phonyland\NGram\Tokenizer
      */
@@ -216,7 +203,6 @@ final class Tokenizer
     /**
      * Converts all tokens to lowercase.
      *
-     * @param  bool  $toLowercase
      *
      * @return \Phonyland\NGram\Tokenizer
      */
