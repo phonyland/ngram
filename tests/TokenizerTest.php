@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Phonyland\NGram\Tokenizer;
-use Phonyland\NGram\TokenizerFilter;
 use Phonyland\NGram\TokenizerFilterType;
 
 it('Tokenizer@tokenize: Seperates the text with the given separator', function (): void {

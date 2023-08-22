@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use Phonyland\NGram\Tokenizer;
 use Phonyland\NGram\NGramFrequency;
-use Phonyland\NGram\TokenizerFilter;
 use Phonyland\NGram\TokenizerFilterType;
 
 test('N-Gram Frequency: Multigram', function (): void {

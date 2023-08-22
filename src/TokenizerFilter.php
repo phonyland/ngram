@@ -10,7 +10,7 @@ final class TokenizerFilter
         public string|TokenizerFilterType $pattern,
         public string $replacement,
     ) {
-        $this->pattern  = $this->pattern instanceof TokenizerFilterType
+        $this->pattern = $this->pattern instanceof TokenizerFilterType
             ? $this->pattern->value
             : $this->pattern;
     }
