@@ -23,7 +23,7 @@ final class NGramCount
             for ($i = 0; $i < $ngramCount; $i++) {
                 $ngram = mb_substr($token, $i, $n);
 
-                self::elementOnArray($ngram, $nGrams);
+                self::incrementElementCount($ngram, $nGrams);
             }
         }
 
@@ -73,11 +73,11 @@ final class NGramCount
      * If the element doesn't exist in the array, it initializes its count to 1.
      *
      * @param  int|string  $element   The element whose count needs to be tracked.
-     * @param  array<int|string, int>  &$elements   Reference to the array containing element counts.
+     * @param  array<int|string, int>  &$elementCounts   Reference to the array containing element counts.
      */
-    public static function elementOnArray(int|string $element, array &$elements): void
+    public static function incrementElementCount(int|string $element, array &$elementCounts): void
     {
-        $elements[$element] ??= 0;
-        $elements[$element]++;
+        $elementCounts[$element] ??= 0;
+        $elementCounts[$element]++;
     }
 }

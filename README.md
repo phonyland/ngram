@@ -194,7 +194,7 @@ NGramCount::trigram($tokens);
 NGramCount::bigram($tokens);
 NGramCount::unigram($tokens);
 
-NGramCount::elementOnArray($element, $elements);
+NGramCount::incrementElementCount($element, $elements);
 ```
 
 <details>
