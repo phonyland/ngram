@@ -39,7 +39,7 @@
     },
     "scripts": {
         "post-autoload-dump": [
-            "@normalize",
+            "@composer normalize --ansi --no-interaction --quiet",
             "@composer validate --strict --ansi --no-interaction"
         ],
         "coverage": "vendor/bin/pest --coverage --colors=always --order-by=random --configuration=phpunit.xml.dist",
@@ -47,7 +47,6 @@
         "infection": "vendor/bin/infection --test-framework=pest --show-mutations --threads=max --min-msi=100 --min-covered-msi=100 --ansi",
         "lint": "@pint",
         "lintc": "vendor/bin/pint && (git diff-index --quiet HEAD || (git add . && git commit -m 'chore: Fix styling'))",
-        "normalize": "@composer normalize --ansi --no-interaction --quiet",
         "pest": "vendor/bin/pest --colors=always --order-by=random --configuration=phpunit.xml.dist",
         "phpstan": "vendor/bin/phpstan analyse --configuration=phpstan.neon.dist",
         "pint": "vendor/bin/pint",
