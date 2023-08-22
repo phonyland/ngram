@@ -160,9 +160,9 @@ test('Tokenizer: Can be converted to an array', function (): void {
 
     // Assert
     expect($result)->toBe([
-        'word_filters'                 => [['pattern' => '/[^ \p{L}]+/u', 'replacement' => '']],
-        'word_separation_patterns'     => ['\s', '/[^0-9]+/'],
+        'word_filters' => [['pattern' => '/[^ \p{L}]+/u', 'replacement' => '']],
+        'word_separation_patterns' => ['\s', '/[^0-9]+/'],
         'sentence_separation_patterns' => ['.', ' '],
-        'to_lowercase'                 => true,
+        'to_lowercase' => true,
     ]);
 });
