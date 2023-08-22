@@ -49,7 +49,7 @@
         "lintc": "vendor/bin/pint && (git diff-index --quiet HEAD || (git add . && git commit -m 'chore: Fix styling'))",
         "pest": "vendor/bin/pest --colors=always --order-by=random --configuration=phpunit.xml.dist",
         "phpstan": "vendor/bin/phpstan analyse --configuration=phpstan.neon.dist",
-        "pint": "vendor/bin/pint",
+        "pint": "vendor/bin/pint --config=vendor/phonyland/dev-tools/src/pint.json",
         "profile": "vendor/bin/pest --profile --colors=always --order-by=random --configuration=phpunit.xml.dist",
         "test": "@pest",
         "testp": "vendor/bin/pest --parallel --colors=always --order-by=random --configuration=phpunit.xml.dist",
