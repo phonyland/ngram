@@ -67,9 +67,13 @@ final class NGramCount
     }
 
     /**
-     * Tracks the given element count on $elements array.
+     * Tracks the count of a given element in the `$elements` array.
      *
-     * @param  array<int|string, int>  $elements
+     * This method increments the count of the specified element within the provided array.
+     * If the element doesn't exist in the array, it initializes its count to 1.
+     *
+     * @param  int|string  $element   The element whose count needs to be tracked.
+     * @param  array<int|string, int>  &$elements   Reference to the array containing element counts.
      */
     public static function elementOnArray(int|string $element, array &$elements): void
     {
