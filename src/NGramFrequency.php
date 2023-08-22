@@ -10,7 +10,6 @@ class NGramFrequency
      * Generates n-grams with frequency for given array of tokens and n-gram level.
      *
      * @param  array<string>  $tokens
-     *
      * @return array<string, float>
      */
     public static function multigram(int $n, array $tokens): array
@@ -25,7 +24,6 @@ class NGramFrequency
      * Generates trigrams with frequency for given array of tokens and n-gram level.
      *
      * @param  array<string>  $tokens
-     *
      * @return array<string, float>
      */
     public static function trigram(array $tokens): array
@@ -37,7 +35,6 @@ class NGramFrequency
      * Generates bigrams with frequency for given array of tokens and n-gram level.
      *
      * @param  array<string>  $tokens
-     *
      * @return array<string, float>
      */
     public static function bigram(array $tokens): array
@@ -49,7 +46,6 @@ class NGramFrequency
      * Generates unigrams with frequency for given array of tokens and n-gram level.
      *
      * @param  array<string>  $tokens
-     *
      * @return array<string, float>
      */
     public static function unigram(array $tokens): array
@@ -61,12 +57,11 @@ class NGramFrequency
      * Calculates the frequency from a n-gram count array.
      *
      * @param  array<string, int>  $countArray
-     *
      * @return  array<string, float>
      */
     public static function frequencyFromCount(array &$countArray): array
     {
-        $ngrams       = array_keys($countArray);
+        $ngrams = array_keys($countArray);
         $elementCount = count($countArray);
 
         $sumOfAllApperances = array_sum($countArray);

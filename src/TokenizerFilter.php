@@ -21,7 +21,7 @@ class TokenizerFilter
     public function toArray(): array
     {
         return [
-            'pattern'     => $this->pattern,
+            'pattern' => $this->pattern,
             'replacement' => $this->replacement,
         ];
     }
