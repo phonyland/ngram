@@ -32,7 +32,7 @@ class NGramFrequency
     }
 
     /**
-     * Generates bigrams with frequency for given array of tokens and n-gram level.
+     * Generates bigrams with frequency for given an array of tokens and n-gram level.
      *
      * @param  array<string>  $tokens
      * @return array<string, float>
