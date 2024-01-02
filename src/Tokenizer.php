@@ -8,29 +8,22 @@ use RuntimeException;
 
 class Tokenizer
 {
-    // region Attributes
-
-    /** @var array<TokenizerFilter> */
-    protected array $wordFilters;
-
-    /** @var array<string> */
-    protected array $wordSeparationPatterns;
-
-    /** @var array<string> */
-    public array $sentenceSeparationPatterns;
-
-    protected bool $toLowercase;
-
-    // endregion
-
     // region Public Methods
 
-    public function __construct()
-    {
-        $this->wordFilters = [];
-        $this->wordSeparationPatterns = [];
-        $this->sentenceSeparationPatterns = [];
-        $this->toLowercase = false;
+    /**
+     * Constructor for initializing the object.
+     *
+     * @param  array<\Phonyland\NGram\TokenizerFilter>  $wordFilters Array of word filters.
+     * @param  array<string>  $wordSeparationPatterns Array of word separation patterns.
+     * @param  array<string>  $sentenceSeparationPatterns Array of sentence separation patterns.
+     * @param  bool  $toLowercase Determines if the text will be converted to lowercase.
+     */
+    public function __construct(
+        protected array $wordFilters = [],
+        protected array $wordSeparationPatterns = [],
+        public array $sentenceSeparationPatterns = [],
+        protected bool $toLowercase = false,
+    ) {
     }
 
     /**
@@ -39,7 +32,7 @@ class Tokenizer
      *
      * @return array<string>
      */
-    public function tokenize(string $text, int $minWordLength = null): array
+    public function tokenize(string $text, ?int $minWordLength = null): array
     {
         if ($this->wordSeparationPatterns === []) {
             throw new RuntimeException('No word separation pattern given!');
@@ -91,7 +84,7 @@ class Tokenizer
      *
      * @return array<array<string>>
      */
-    public function tokenizeBySentences(string $text, int $minWordLength = null): array
+    public function tokenizeBySentences(string $text, ?int $minWordLength = null): array
     {
         $sentences = $this->sentences($text);
 
@@ -172,10 +165,6 @@ class Tokenizer
 
     /**
      * Adds a separator pattern for the splitting the given text.
-     *
-     *
-     * @param  string|\Phonyland\NGram\TokenizerFilterType  $wordSeparationPattern
-     * @return  \Phonyland\NGram\Tokenizer
      */
     public function addWordSeparatorPattern(string|TokenizerFilterType $wordSeparationPattern): self
     {
@@ -192,7 +181,6 @@ class Tokenizer
      * Adds a separator pattern for the splitting into sentences.
      *
      * @param  string|array<string>  $sentenceSeparationPattern
-     * @return \Phonyland\NGram\Tokenizer
      */
     public function addSentenceSeparatorPattern(string|array $sentenceSeparationPattern): self
     {
@@ -210,9 +198,6 @@ class Tokenizer
 
     /**
      * Converts all tokens to lowercase.
-     *
-     *
-     * @return \Phonyland\NGram\Tokenizer
      */
     public function toLowercase(bool $toLowercase = true): self
     {
